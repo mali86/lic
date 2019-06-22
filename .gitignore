@@ -15,4 +15,7 @@ Homestead.yaml
 /application
 /dev
 /wp
-
+/composer.json
+/composer.lock
+/package.json
+/package-lock.json
