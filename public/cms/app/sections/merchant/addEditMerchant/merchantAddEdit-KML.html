@@ -1,0 +1,44 @@
+<!-- <md-dialog aria-label="Modal" flex> -->
+	<style type="text/css">
+
+            #panel {
+                width: 200px;
+                font-family: Arial, sans-serif;
+                font-size: 13px;
+                float: right;
+                margin: 10px;
+            }
+
+            #color-palette {
+                clear: both;
+            }
+
+            .color-button {
+                width: 14px;
+                height: 14px;
+                font-size: 0;
+                margin: 2px;
+                float: left;
+                cursor: pointer;
+            }
+
+            #delete-button {
+                margin-top: 5px;
+            }
+        </style>
+<div flex layout="column" >
+    <span class="padding-bottom table-title">KML Map</span>
+    <div id="panel">
+        <md-button class="md-warn md-raised" id="delete-button"><span class="icon-lic-delete btn"></span> Delete Selected Shape</md-button>
+        <md-button type="button" ng-click="save(lat_longs_string)" class="md-raised md-primary" ng-disabled="form.$invalid || loading">
+            <span ng-show="!loading && !merchant.id"><span class="icon-lic-save btn-icon"></span> Save</span>
+            <span ng-show="!loading && merchant.id"><span class="icon-lic-update btn-icon"></span> Update</span>
+            <span ng-show="loading">Please wait...</span>
+        </md-button>
+    </div>
+    <div id="map" style="height: 100vh;">Error</div>
+</div>
+<!-- </md-dialog> -->
+<script>
+	
+</script>

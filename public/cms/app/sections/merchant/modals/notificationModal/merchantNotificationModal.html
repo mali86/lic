@@ -1,0 +1,36 @@
+<md-dialog aria-label="Modal" flex>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span class="padding-bottom-0"><i class="fa fa-bell" aria-hidden="true"></i> {{merchant.name}}</span>
+            <span flex></span>
+            <md-button type="button" class="md-icon-button" ng-click="cancel()">
+                <md-icon class="fa" md-font-icon="fa-times" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <form novalidate flex layout="column" ng-submit="send()">
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Title</label>
+                        <input ng-model="notification.title" required type="text">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Description</label>
+                        <textarea maxlength="200" ng-model="notification.description" required rows="3" md-select-on-focus></textarea>
+                        <em pull-right>{{notification.description.length ? notification.description.length : 0}}/200</em>
+                    </md-input-container>
+                </div>
+                <md-dialog-actions layout="row">
+                    <md-button type="submit" class="md-raised md-primary" ng-disabled="form.$invalid || loading">
+                        <span ng-show="!loading">Send</span>
+                        <span ng-show="loading"><i class="fa fa-cog fa-spin"></i> Please wait...</span>
+                    </md-button>
+                </md-dialog-actions>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

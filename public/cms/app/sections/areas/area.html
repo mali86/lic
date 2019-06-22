@@ -1,0 +1,59 @@
+<div>
+    <div layout="column">
+        <span class="table-title padding-bottom">
+            <!-- <i class="fa fa-database" aria-hidden="true"></i> -->
+             Areas</span>
+        <form novalidate flex layout="row" ng-submit="search()">
+            <md-input-container flex>
+                <label>Search</label>
+                <input type="text" autocomplete="off" ng-disabled="!total && !params.search" ng-model="params.search" ng-change="search()">
+            </md-input-container>
+           <!--  <md-button class="md-fab md-mini" type="submit" ng-disabled="!total && !params.search" aria-label="Search">
+                <i class="fa fa-search"></i>
+            </md-button> -->
+            <md-input-container class="no">
+                <md-button class="md-raised md-primary" type="button" ng-click="openAreaAdd()" aria-label="Add">
+                    <span class="icon-lic-add btn-icon"></span>Add New Area
+                </md-button>
+            </md-input-container>
+        </form>
+        <h4 ng-show="loading" class="text-center">Please wait...</h4>
+        <md-table-container ng-if="total > 0 && !loading">
+            <table md-table md-progress="promise">
+                <thead md-head md-order="params.sort_by" md-on-reorder="sortAreas">
+                    <tr md-row>
+												<th md-column md-order-by="name">
+														<span>Name</span>
+														<i class="fa fa-sort" aria-hidden="true">
+																<md-tooltip md-direction="bottom">Sort by Area name</md-tooltip>
+														</i>
+												</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="area in areas track by $index">
+                        <td md-cell ng-bind="area.name"></td>
+                        <td md-cell text-right>
+                            <md-button class="md-accent md-hue-1 md-icon-button td-btn-edit" ng-click="openAreaEdit(area)">
+                                <span class="icon-lic-edit" aria-hidden="true"></span>
+                                <md-tooltip md-direction="bottom">Edit</md-tooltip>
+                            </md-button>
+                            <md-button class="md-icon-button md-warn td-btn-delete" ng-disabled="area.loading" ng-click="removeModal($event, area)">
+                                <span class="icon-lic-delete" aria-hidden="true"></span>
+                                <md-tooltip md-direction="bottom">Delete</md-tooltip>
+                            </md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+        <h4 ng-show="!loading && !total && !params.search" class="text-center">Currently there are no areas in your database.</h4>
+        <md-table-pagination ng-if="total > 0 && !loading"
+                             md-options="[10, 20, 30]"
+                             md-limit="params.limit"
+                             md-page="params.page"
+                             md-total="{{total}}"
+                             md-on-paginate="onPaginate"
+                             md-page-select></md-table-pagination>
+    </div>
+</div>

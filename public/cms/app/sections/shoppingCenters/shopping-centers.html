@@ -1,0 +1,68 @@
+<div>
+    <div layout="column">
+        <span class="padding-bottom-0"><i class="fa fa-database" aria-hidden="true"></i> Shopping Centers</span>
+        <form novalidate flex layout="row" ng-submit="search()">
+            <md-input-container flex>
+                <label>Search</label>
+                <input type="text" autocomplete="off" ng-disabled="!total && !params.search" ng-model="params.search"
+                       ng-change="search()">
+            </md-input-container>
+            <md-button class="md-fab md-mini" type="submit" ng-disabled="!total && !params.search" aria-label="Search">
+                <i class="fa fa-search"></i>
+            </md-button>
+            <md-input-container class="no" ng-if="session.role =='admin'">
+                <md-button class="md-raised md-primary" type="button" ng-click="shoppingCenterModal($event)"
+                           aria-label="Add">
+                    Add
+                </md-button>
+            </md-input-container>
+        </form>
+        <h4 ng-show="loading" class="text-center">Please wait...</h4>
+        <md-table-container ng-if="total > 0 && !loading">
+            <table md-table md-progress="promise">
+                <thead md-head md-order="params.sort_by" md-on-reorder="sortShoppingCenters">
+                <tr md-row>
+                    <th md-column md-order-by="name">
+                        <span>Name</span>
+                        <i class="fa fa-sort" aria-hidden="true">
+                            <md-tooltip md-direction="bottom">Sort by Name</md-tooltip>
+                        </i>
+                    </th>
+                    <th md-column md-order-by="area_name">
+                        <span>Area</span>
+                        <i class="fa fa-sort" aria-hidden="true">
+                            <md-tooltip md-direction="bottom">Sort by Area</md-tooltip>
+                        </i>
+                    </th>
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row ng-repeat="shoppingCenter in shoppingCenters track by $index">
+                    <td md-cell ng-bind="shoppingCenter.name"></td>
+                    <td md-cell ng-bind="shoppingCenter.area_name"></td>
+                    <td md-cell text-right>
+                        <md-button class="md-raised" ng-click="merchantsModal($event, shoppingCenter)">
+                            <i class="fa fa-list-alt" aria-hidden="true"></i>
+                            <md-tooltip md-direction="bottom">Merchants</md-tooltip>
+                        </md-button>
+                        <md-button class="md-raised" ng-click="shoppingCenterModal($event, shoppingCenter)">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            <md-tooltip md-direction="bottom">Edit</md-tooltip>
+                        </md-button>
+                        <md-button class="md-raised md-warn" ng-if="session.role != 'sc-user'" ng-disabled="shoppingCenter.loading"
+                                   ng-click="removeModal($event, shoppingCenter)">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            <md-tooltip md-direction="bottom">Delete</md-tooltip>
+                        </md-button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+        <h4 ng-show="!loading && !total && !params.search" class="text-center">Currently there are no shopping centers
+            in your database.</h4>
+        <md-table-pagination ng-if="total > 0 && !loading" md-options="[10, 20, 30]" md-limit="params.limit"
+                             md-page="params.page"
+                             md-total="{{total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+    </div>
+</div>

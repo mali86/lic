@@ -1,0 +1,91 @@
+<div>
+    <div layout="column">
+        <span class="table-title padding-bottom">
+            <!-- <i class="fa fa-database" aria-hidden="true"></i> -->
+             Merchants in DB</span>
+        <form novalidate flex layout="row" ng-submit="search()">
+            <md-input-container class="filter-by-container-fix">
+                <label>Categories</label>
+                <md-select ng-change="selectFilter()" ng-model="filters" multiple>
+                    <md-option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</md-option>
+                </md-select>
+                <em ng-if="categoryLoading">Please wait...</em>
+            </md-input-container>
+            <md-input-container flex>
+                <label>Search</label>
+                <input type="text" autocomplete="off" ng-disabled="!total && !params.search" ng-model="params.search" ng-change="search()">
+            </md-input-container>
+           <!--  <md-button class="md-fab md-mini" type="submit" ng-disabled="!total && !params.search" aria-label="Search">
+                <i class="fa fa-search"></i>
+            </md-button> -->
+            <md-input-container class="no">
+                <md-button class="md-raised md-primary" type="button" ng-click="openMerchantAdd()" aria-label="Add">
+                    <span class="icon-lic-add btn-icon"></span>Add New Merchant
+                </md-button>
+            </md-input-container>
+        </form>
+    </div>
+    <md-table-container ng-if="total > 0 && !loading">
+        <table md-table>
+            <thead md-head md-order="params.sort_by" md-on-reorder="sortMerchants">
+                <tr md-row>
+                    <th md-column md-order-by="id">
+                        <span>No.</span>
+                        <i class="fa fa-sort" aria-hidden="true">
+                            <md-tooltip md-direction="bottom">Sort by Number</md-tooltip>
+                        </i>
+                    </th>
+                    <th md-column md-order-by="name">
+                        <span>Name</span>
+                        <i class="fa fa-sort" aria-hidden="true">
+                            <md-tooltip md-direction="bottom">Sort by Name</md-tooltip>
+                         </i>
+                    </th>
+                    <th md-column>Stores</th>
+                    <th md-column>Coupons</th>
+                    <th md-column md-order-by="shopping_center_name">
+                        <span>Shopping Center</span>
+                        <i class="fa fa-sort" aria-hidden="true">
+                            <md-tooltip md-direction="bottom">Sort by Shopping center name</md-tooltip>
+                        </i>
+                    </th>
+                    <th md-column>Category</th>
+                    <th md-column></th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row ng-repeat="merchant in merchants track by $index">
+                    <td md-cell ng-bind="merchant.id"></td>
+                    <td md-cell ng-bind="merchant.name"></td>
+                    <td md-cell ng-bind="merchant.stores"></td>
+                    <td md-cell ng-bind="merchant.coupons"></td>
+                    <td md-cell ng-bind="merchant.shopping_center_name ? merchant.shopping_center_name : '-'"></td>
+                    <td md-cell><span ng-repeat="categories in merchant.categories">{{categories.name}} </span></td>
+                    <td md-cell text-right>
+                        <md-button aria-label="Coupons" class="md-primary md-icon-button td-btn-coupon" ui-sref="layout.coupons({merchantId: merchant.id})">
+                            <span class="icon-lic-coupon" aria-hidden="true"></span>
+                            <md-tooltip md-direction="bottom">Coupons</md-tooltip>
+                        </md-button>
+                        <md-button aria-label="Edit" class="md-accent md-hue-1 md-icon-button td-btn-edit" ng-click="openMerchantEdit(merchant)">
+                            <span class="icon-lic-edit" aria-hidden="true"></span>
+                            <md-tooltip md-direction="bottom">Edit</md-tooltip>
+                        </md-button>
+                        <md-button aria-label="Remove" class="md-icon-button md-warn td-btn-delete" ng-click="removeModal($event, merchant)">
+                            <span class="icon-lic-delete" aria-hidden="true"></span>
+                            <md-tooltip md-direction="bottom">Delete</md-tooltip>
+                        </md-button>
+                       <!--  <md-button aria-label="Notification" class="md-raised md-accent md-hue-1" ng-click="sendNotification($event, merchant)">
+                            <i class="fa fa-bell-o" aria-hidden="true"></i>
+                            <md-tooltip md-direction="bottom">Notification</md-tooltip>
+                        </md-button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <h4 ng-show="!loading && !total && !params.search" class="text-center">Currently there are no merchants in your database.</h4>
+    <h4 ng-show="params.search && total == 0" class="text-center">Currently there are no results that match search criterium.</h4>
+    <h4 ng-show="loading" class="text-center">Please wait...</h4>
+    <md-table-pagination ng-if="total > 0 && !loading" md-options="[10, 20, 30]" md-limit="params.limit" md-page="params.page"
+        md-total="{{total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+</div>

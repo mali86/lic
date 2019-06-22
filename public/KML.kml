@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Naziv Fajla</name>
+    <Style id="transYellowPoly">
+      <LineStyle>
+          <color>7d000000</color>
+          <width>1</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7d00ffff</color>
+      </PolyStyle>
+    </Style>
+    <Folder>
+      <name>Village At Leesburg</name>
+      <visibility>1</visibility>
+      <description>A collection showing how easy it is to create 3-dimensional
+        buildings</description>
+      <Placemark>
+          <name>Pho2000</name>
+          <visibility>1</visibility>
+          <styleUrl>#transYellowPoly</styleUrl>
+          <Polygon>
+              <extrude>1</extrude>
+              <altitudeMode>relativeToGround</altitudeMode>
+              <outerBoundaryIs>
+                  <LinearRing>
+                      <coordinates>
+                          
+                          -77.40129653438834,38.957688561248474,0
+                          -77.40124892517832,38.95767682897098,0
+                          -77.40121673867014,38.9576288575281,0
+                          -77.40125771025862,38.95753020179556,0
+                          -77.40127480932824,38.95753359110798,0
+                          -77.40130900749318,38.95744964089193,0
+                          -77.40138679155461,38.957468412377445,0
+                          -77.40129653438834,38.957688561248474,0
+                      </coordinates>
+                  </LinearRing>
+              </outerBoundaryIs>
+          </Polygon>
+      </Placemark>
+      <Placemark>
+          <name>Panera Bread</name>
+          <visibility>1</visibility>
+          <styleUrl>#transYellowPoly</styleUrl>
+          <Polygon>
+              <extrude>1</extrude>
+              <altitudeMode>relativeToGround</altitudeMode>
+              <outerBoundaryIs>
+                  <LinearRing>
+                      <coordinates>
+                          -77.4011506668075,38.957613190382425,0
+                          -77.40099107537111,38.95757512605383,0
+                          -77.40102326187929,38.957494304466444,0
+                          -77.40103399071535,38.9574953473262,0
+                          -77.40107489440283,38.95739366842554,0
+                          -77.40128075394472,38.957443204318466,0
+                          -77.40126399013837,38.957487525877475,0
+                          -77.40120967540582,38.95747396869768,0
+                          -77.4011506668075,38.957613190382425,0
+                      </coordinates>
+                  </LinearRing>
+              </outerBoundaryIs>
+          </Polygon>
+      </Placemark>
+      <Placemark>
+          <name>Starbucks</name>
+          <visibility>1</visibility>
+          <styleUrl>#transYellowPoly</styleUrl>
+          <Polygon>
+              <extrude>1</extrude>
+              <altitudeMode>relativeToGround</altitudeMode>
+              <outerBoundaryIs>
+                  <LinearRing>
+                      <coordinates>
+                          -77.40091203411805,38.95752783580683,0 -77.40084062030303,38.957510367911496,0 -77.4008164804219,38.9574733463878,0 -77.4008315678476,38.9574782999731,0 -77.40086174269902,38.95738548537029,0 -77.40088588258016,38.957375056755644,0 -77.40096031388032,38.957400867574115,0 -77.40091203411805,38.95752783580683,0
+                      </coordinates>
+                  </LinearRing>
+              </outerBoundaryIs>
+          </Polygon>
+      </Placemark>
+      <Placemark>
+          <name>a-Deli</name>
+          <visibility>1</visibility>
+          <styleUrl>#transYellowPoly</styleUrl>
+          <Polygon>
+              <extrude>1</extrude>
+              <altitudeMode>relativeToGround</altitudeMode>
+              <outerBoundaryIs>
+                  <LinearRing>
+                      <coordinates>
+                          -77.40092745681989,38.95738932352264,0 -77.40093684455144,38.95736559842335,0 -77.4008490022062,38.95733300898833,0 -77.4007504310249,38.9573742020317,0 -77.4007816117047,38.957420087925236,0 -77.40088621785628,38.95737524489324,0 -77.40092745681989,38.95738932352264,0
+                      </coordinates>
+                  </LinearRing>
+              </outerBoundaryIs>
+          </Polygon>
+      </Placemark>
+      <Placemark>
+          <name>QDOBA Mexican Eats</name>
+          <visibility>1</visibility>
+          <styleUrl>#transYellowPoly</styleUrl>
+          <Polygon>
+              <extrude>1</extrude>
+              <altitudeMode>relativeToGround</altitudeMode>
+              <outerBoundaryIs>
+                  <LinearRing>
+                      <coordinates>
+                          -77.40093684455144,38.95736533770795,0 -77.40084833165395,38.957333269703874,0 -77.4007504310249,38.9573742020317,0 -77.40070081015813,38.95729963739132,0 -77.40086308380353,38.95723497987743,0 -77.4008889000653,38.957278258703745,0 -77.40094220896947,38.957290512342546,0 -77.40094086786496,38.95729963739132,0 -77.4009613197087,38.9573048517044,0 -77.40093684455144,38.95736533770795,0
+                      </coordinates>
+                  </LinearRing>
+              </outerBoundaryIs>
+          </Polygon>
+      </Placemark>
+      <Placemark>
+          <name>Cold Stone Creamery</name>
+          <visibility>1</visibility>
+          <styleUrl>#transYellowPoly</styleUrl>
+          <Polygon>
+              <extrude>1</extrude>
+              <altitudeMode>relativeToGround</altitudeMode>
+              <outerBoundaryIs>
+                  <LinearRing>
+                      <coordinates>
+                          -77.4006592359184,38.95723758703639,0 -77.400631743276,38.957196393913605,0 -77.40065387150037,38.95713538633331,0 -77.40065957119452,38.9571369506309,0 -77.40066862364995,38.95711687547594,0 -77.40069075187432,38.957106446821754,0 -77.40085906049,38.957147900713046,0 -77.4006592359184,38.95723758703639,0
+                      </coordinates>
+                  </LinearRing>
+              </outerBoundaryIs>
+          </Polygon>
+      </Placemark>
+      <Placemark>
+          <name>Tara Thai</name>
+          <visibility>1</visibility>
+          <styleUrl>#transYellowPoly</styleUrl>
+          <Polygon>
+              <extrude>1</extrude>
+              <altitudeMode>relativeToGround</altitudeMode>
+              <outerBoundaryIs>
+                  <LinearRing>
+                      <coordinates>
+                          -77.40054985069935,38.95716413137113,0 -77.40045094424192,38.95714014548021,0 -77.40053979241554,38.956917257434164,0 -77.40060751819317,38.95693394332466,0 -77.40062562310402,38.95695792928536,0 -77.40056326174442,38.957111132546686,0 -77.40057130837147,38.95711478257556,0 -77.40054985069935,38.95716413137113,0
+                      </coordinates>
+                  </LinearRing>
+              </outerBoundaryIs>
+          </Polygon>
+      </Placemark>
+      <Placemark>
+          <name>McAlisters</name>
+          <visibility>1</visibility>
+          <styleUrl>#transYellowPoly</styleUrl>
+          <Polygon>
+              <extrude>1</extrude>
+              <altitudeMode>relativeToGround</altitudeMode>
+              <outerBoundaryIs>
+                  <LinearRing>
+                      <coordinates>
+                          -77.40004241028134,38.957145401462896,0 -77.39987410166566,38.95689615630829,0 -77.39991751992409,38.956879470408914,0 -77.39988357535913,38.95682934917414,0 -77.39996974150006,38.956794038597295,0 -77.3999727589852,38.95678673850628,0 -77.40002036819521,38.95679821007755,0 -77.39999823997084,38.95685400360227,0 -77.40011468008299,38.957027337752386,0 -77.40009255185862,38.95703620211843,0 -77.40011937394877,38.95707687390138,0 -77.40007042363425,38.957097209784116,0 -77.40005332455178,38.9571412708433,0 -77.40004241028134,38.957145401462896,0
+                      </coordinates>
+                  </LinearRing>
+              </outerBoundaryIs>
+          </Polygon>
+      </Placemark>
+      <Placemark>
+          <name>Matsutake</name>
+          <visibility>1</visibility>
+          <styleUrl>#transYellowPoly</styleUrl>
+          <Polygon>
+              <extrude>1</extrude>
+              <altitudeMode>relativeToGround</altitudeMode>
+              <outerBoundaryIs>
+                  <LinearRing>
+                      <coordinates>
+                          -77.40158167114049,38.957718130064485,0 -77.40146868308574,38.95769075507625,0 -77.4014069922784,38.95771604435146,0 -77.40137882908374,38.95770874435541,0 -77.40146667142898,38.957487658404744,0 -77.40165643771678,38.9575327620804,0 -77.40158167114049,38.957718130064485,0
+                      </coordinates>
+                  </LinearRing>
+              </outerBoundaryIs>
+          </Polygon>
+      </Placemark>
+      <!--novo-->
+      <Placemark>
+          <name>Subway</name>
+          <visibility>1</visibility>
+          <styleUrl>#transYellowPoly</styleUrl>
+          <Polygon>
+              <extrude>1</extrude>
+              <altitudeMode>relativeToGround</altitudeMode>
+              <outerBoundaryIs>
+                  <LinearRing>
+                      <coordinates>
+                          -77.40158111618473,38.957718130064485,0 -77.40163341922732,38.95773116576942,0 -77.40169142199727,38.95770770149878,0 -77.40175110114785,38.95755700855315,0 -77.40165621800395,38.9575330227952,0 -77.40158111618473,38.957718130064485,0
+                      </coordinates>
+                  </LinearRing>
+              </outerBoundaryIs>
+          </Polygon>
+      </Placemark>
+      <Placemark>
+          <name>Kalpasi Indian Cuisine</name>
+          <visibility>1</visibility>
+          <styleUrl>#transYellowPoly</styleUrl>
+          <Polygon>
+              <extrude>1</extrude>
+              <altitudeMode>relativeToGround</altitudeMode>
+              <outerBoundaryIs>
+                  <LinearRing>
+                      <coordinates>
+                          -77.40185072537639,38.95782356864541,0 -77.40178936984518,38.95773116084221,0 -77.4016912118621,38.9577073734394,0 -77.40175089101268,38.95755703466377,0 -77.40193763981534,38.95760213829528,0 -77.40185072537639,38.95782356864541,0
+                      </coordinates>
+                  </LinearRing>
+              </outerBoundaryIs>
+          </Polygon>
+      </Placemark>
+      <Placemark>
+          <name>Bamboo Garden</name>
+          <visibility>1</visibility>
+          <styleUrl>#transYellowPoly</styleUrl>
+          <Polygon>
+              <extrude>1</extrude>
+              <altitudeMode>relativeToGround</altitudeMode>
+              <outerBoundaryIs>
+                  <LinearRing>
+                      <coordinates>
+                          -77.40202252176039,38.95788215425643,0 -77.4019645188298,38.957868336313645,0 -77.40195110778473,38.95784773993857,0 -77.40185052494667,38.95782375427907,0 -77.40193724391844,38.95760234315934,0 -77.40195065496351,38.957605211019334,0 -77.40194596109774,38.95761850745955,0 -77.40196775404598,38.95762450389257,0 -77.40204117951777,38.95764223247416,0 -77.40200563136852,38.95773322864716,0 -77.40206885499555,38.95782833340083,0 -77.4020400212487,38.95783978012426,0 -77.40202252176039,38.95788215425643,0
+                      </coordinates>
+                  </LinearRing>
+              </outerBoundaryIs>
+          </Polygon>
+      </Placemark>
+      <Placemark>
+          <name>TGI Fridays</name>
+          <visibility>1</visibility>
+          <styleUrl>#transYellowPoly</styleUrl>
+          <Polygon>
+              <extrude>1</extrude>
+              <altitudeMode>relativeToGround</altitudeMode>
+              <outerBoundaryIs>
+                  <LinearRing>
+                      <coordinates>
+                          -77.40159193264134,38.95824405835608,0 -77.4014055191148,38.95814733362196,0 -77.4016046972983,38.95791614483373,0 -77.4017046095841,38.95794065188859,0 -77.40177726768917,38.95805004263586,0 -77.40174455669023,38.95806362207626,0 -77.40173718061544,38.95807405058956,0 -77.40159871157505,38.958237517335206,0 -77.40159193264134,38.95824405835608,0
+                      </coordinates>
+                  </LinearRing>
+              </outerBoundaryIs>
+          </Polygon>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>

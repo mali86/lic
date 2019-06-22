@@ -1,0 +1,11 @@
+<div layout="row" layout-align="center" id="status-buttons" class="text-center">
+    <a class="nav-stepper" layout="row" layout-align="center center" ui-sref-active="active" ui-sref=".edit">
+        <span class="icon-lic-f-one btn-icon"><span class="path1"></span><span class="path2"></span></span><div>
+            <!-- {{merchant.id ? ' - Edit Merchant' : ' - Add Merchant'}} -->
+        </div>
+    </a>
+    <a class="nav-stepper step_two" layout="row" layout-align="center center" ui-sref-active="active" ui-sref=".kml">
+         <span class="icon-lic-f-two btn-icon"><span class="path1"></span><span class="path2"></span></span><div></div>
+    </a>
+</div>
+<div layout="row" id="merchant-stepper" ui-view></div>

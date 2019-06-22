@@ -1,0 +1,58 @@
+<md-dialog aria-label="Modal" flex>
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Working Days</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="fa" md-font-icon="fa-times" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="row" class="working-hours-all">
+                    <span>Set all from</span>
+                    <mdp-time-picker name="allFrom" ng-model="all.from"></mdp-time-picker>
+                    <span>to</span>
+                    <mdp-time-picker name="allTo" ng-model="all.to"></mdp-time-picker>
+                    <md-input-container>
+                        <md-button class="md-raised working-hours-margin-fix" ng-click="setTime()">Set</md-button>
+                    </md-input-container>
+                </div>
+                <md-table-container>
+                    <table md-table>
+                        <thead md-head>
+                            <tr md-row>
+                                <th md-column>Week Day</th>
+                                <th md-column>From</th>
+                                <th md-column>To</th>
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr md-row ng-repeat="day in workingDays">
+                                <td md-cell>
+                                    <span>{{day.day}}</span>
+                                </td>
+                                <td md-cell>
+                                    <mdp-time-picker ng-model="day.from"></mdp-time-picker>
+                                </td>
+                                <td md-cell>
+                                    <mdp-time-picker ng-model="day.to"></mdp-time-picker>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button type="button" class="md-raised" ng-click="cancel()">Back</md-button>
+            <md-button type="submit" ng-click="save()" class="md-raised md-primary" ng-disabled="form.$invalid || loading">
+                <span ng-show="loading">Please wait...</span>
+                <span ng-show="!loading && shoppingCenter.id">Update</span>
+                <span ng-show="!loading && !shoppingCenter.id">Add</span>
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

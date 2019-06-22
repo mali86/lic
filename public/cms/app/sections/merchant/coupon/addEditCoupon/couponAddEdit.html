@@ -1,0 +1,123 @@
+<!-- <md-dialog aria-label="Modal" flex> -->
+<div flex layout="column" >
+    <span class="table-title" ng-bind="coupon.id ? 'Edit Coupon' : 'Add Coupon'"></span>
+    <form name="form">
+       <!--  <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2></h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="fa" md-font-icon="fa-times" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar> -->
+        <md-content flex layout="column" layout-padding>
+            <div layout="column">
+                <md-input-container flex>
+                    <label>Title</label>
+                    <input ng-model="coupon.title" required type="text">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Description</label>
+                    <textarea maxlength="200" ng-model="coupon.description" required rows="3" md-select-on-focus></textarea>
+                    <em pull-right>{{coupon.description.length ? coupon.description.length : 0}}/200</em>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container flex>
+                    <label>Start Date</label>
+                    <md-datepicker ng-model="coupon.start_date"
+                                   md-placeholder="Start Date"
+                                   md-open-on-focus></md-datepicker>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>End Date</label>
+                    <md-datepicker ng-model="coupon.end_date"
+                                   md-placeholder="End Date"
+                                   md-open-on-focus></md-datepicker>
+                </md-input-container>
+            </div>
+            <md-content class="md-padding">
+                            <div layout="column">
+                                <br />
+                                <div ng-show="uploader.isHTML5" style="padding: 20px;" nv-file-drop class="my-drop-zone" nv-file-over="" uploader="uploader">
+                                    <span class="drag-img"></span>
+                                    <span class="drag-text"> Drag & drop files here</span>
+                                </div>
+                                <input ng-show="!uploader.isHTML5" type="file" nv-file-select="" uploader="uploader" multiple /><br />
+                                <em class="text-right">* only PDF and images are allowed</em>
+                                <br />
+
+                                <div layout="row" flex ng-show="uploader.queue.length > 0">
+                                    <table md-table class="table">
+                                        <thead md-head>
+                                            <tr md-row>
+                                                <th md-column width="50%">Name</th>
+                                                <th md-column ng-show="uploader.isHTML5">Size</th>
+                                                <th md-column ng-show="uploader.isHTML5">Progress</th>
+                                                <th md-column>Status</th>
+                                                <th md-column>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody md-body>
+                                            <tr md-row ng-repeat="item in uploader.queue">
+                                                <td md-cell><strong>{{ item.file.name }}</strong></td>
+                                                <td md-cell ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                                <td md-cell ng-show="uploader.isHTML5">
+                                                    <div class="progress" style="margin-bottom: 0;">
+                                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                                    </div>
+                                                </td>
+                                                <td md-cell class="text-center">
+                                                    <span ng-show="item.isSuccess"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                                    <span ng-show="item.isCancel"><i class="fa fa-ban" aria-hidden="true"></i></span>
+                                                    <span ng-show="item.isError"><i class="fa fa-exclamation" aria-hidden="true"></i></span>
+                                                </td>
+                                                <td md-cell nowrap>
+                                                    <md-button type="button" aria-label="Delete" class="md-raised" ng-click="item.remove()">
+                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                    </md-button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div>
+                                        <div>
+                                            <md-progress-linear md-mode="determinate" value="{{uploader.progress}}"></md-progress-linear>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="coupon.files.length">
+                                    <span>Files:</span>
+                                    <div layout="row">
+                                        <md-card md-theme="default" ng-repeat="file in coupon.files" md-theme-watch>
+                                            <a href="{{file.url}}" target="_blank">
+                                                <img ng-if="file.extension != 'pdf' && file.extension != 'txt'" layout-padding ng-src="{{file.url}}" alt="Image" style="height: 200px; width: 200px;" />
+                                                <div ng-if="file.extension == 'pdf' || file.extension == 'txt'" layout-padding style="height: 200px; width: 200px;" class="text-center">
+                                                    <i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
+                                                </div>
+                                            </a>
+                                            <md-card-actions layout="row" layout-align="end center">
+                                                <md-button ng-click="removeFile(file)">
+                                                    <span ng-show="!file.loading">Delete</span>
+                                                    <span ng-show="file.loading">Please wait...</span>
+                                                </md-button>
+                                            </md-card-actions>
+                                        </md-card>
+                                    </div>
+                                </div>
+                            </div>
+                        </md-content>
+
+        </md-content>
+        <section layout="row">
+            <!-- <md-button type="button" class="md-raised" ng-click="cancel()">Back</md-button> -->
+            <md-button type="submit" ng-click="save()" class="md-raised md-primary" ng-disabled="form.$invalid || loading">
+                <span ng-show="!loading"><span class="icon-lic-save btn-icon"></span> Save</span>
+                <span ng-show="loading"><i class="fa fa-cog fa-spin"></i> Please wait...</span>
+            </md-button>
+        </section>
+    </form>
+</div>
+<!-- </md-dialog> -->
+

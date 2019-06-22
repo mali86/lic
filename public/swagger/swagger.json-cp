@@ -1,0 +1,3020 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Life is a Coupon API $name",
+        "version": "1.0"
+    },
+    "host": "18.223.38.238",
+    "basePath": "",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/areas": {
+            "get": {
+                "tags": [
+                    "areas"
+                ],
+                "summary": "Display a listing of the areas.",
+                "description": "Returns all areas.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "How many results want per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Column name for sort. (- before name for desc)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search by area name.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns all areas."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "areas"
+                ],
+                "summary": "Creates area.",
+                "description": "Creates area.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "Area name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "state_id",
+                        "in": "formData",
+                        "description": "State id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns new area."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            }
+        },
+        "/areas/{id}": {
+            "get": {
+                "tags": [
+                    "areas"
+                ],
+                "summary": "Display area.",
+                "description": "Returns area.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Area id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns area."
+                    },
+                    "400": {
+                        "description": "Area not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "areas"
+                ],
+                "summary": "Updates area.",
+                "description": "Updates area.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Area id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "Area name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "state_id",
+                        "in": "formData",
+                        "description": "State id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Area has been successfully updated."
+                    },
+                    "400": {
+                        "description": "Area not found."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "areas"
+                ],
+                "summary": "Removes area.",
+                "description": "Deletes area.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Area id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Area has been successfully deleted."
+                    },
+                    "400": {
+                        "description": "Area not found."
+                    },
+                    "403": {
+                        "description": "Can not delete area. There are some shopping centers or merchants in it."
+                    }
+                }
+            }
+        },
+        "/password/email": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Send email for reset password.",
+                "description": "Send email for reset password.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns success send email message."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Login.",
+                "description": "Login and returns user info.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Password.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns user info."
+                    },
+                    "400": {
+                        "description": "Credentials don't match."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Register new user.",
+                "description": "Returns coupons.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "first_name",
+                        "in": "formData",
+                        "description": "First name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "last_name",
+                        "in": "formData",
+                        "description": "Last name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "User email, must be valid email address.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "formData",
+                        "description": "Password confirmation",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "Type (1 for user 2 for shopping center user - default value is for user)",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns new user."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            }
+        },
+        "/check-email": {
+            "get": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Check email.",
+                "description": "Check email.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "email.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Email is available."
+                    },
+                    "400": {
+                        "description": "Email already exists."
+                    }
+                }
+            }
+        },
+        "/password/reset": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Reset password.",
+                "description": "Reset password.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "formData",
+                        "description": "Token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "data",
+                        "in": "formData",
+                        "description": "Data (this is encrypted email, you receive it when user click on link in email).",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "formData",
+                        "description": "Password confirmation",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns user."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    },
+                    "400": {
+                        "description": "User not found."
+                    },
+                    "403": {
+                        "description": "Token is expired or wrong."
+                    }
+                }
+            }
+        },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Display a listing of the categories.",
+                "description": "Returns all categories.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "How many results want per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Column name for sort. (- before name for desc)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search by categories name.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns all categories."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Creates category.",
+                "description": "Creates category.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "Name of category",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns new category."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            }
+        },
+        "/categories/{id}": {
+            "get": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Display category.",
+                "description": "Returns requested category.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Category Id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns requested category."
+                    },
+                    "400": {
+                        "description": "Category not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Updates category.",
+                "description": "Updates category.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "Name of category",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Category Id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns updated Category."
+                    },
+                    "400": {
+                        "description": "Category not found."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Removes category.",
+                "description": "Deletes category if it's not used by any merchant.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Category Id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Category has been successfully deleted."
+                    },
+                    "400": {
+                        "description": "Category not found."
+                    },
+                    "422": {
+                        "description": "Can not delete category. It is being used by some merchant."
+                    }
+                }
+            }
+        },
+        "/categories/{id}/upload-file": {
+            "post": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Upload logo.",
+                "description": "Upload logo.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Category id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "logo",
+                        "in": "formData",
+                        "description": "Logo",
+                        "required": true,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Logo has been successfully uploaded."
+                    },
+                    "400": {
+                        "description": "Category not found."
+                    }
+                }
+            }
+        },
+        "/categories/{id}/remove-file": {
+            "delete": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Removes logo.",
+                "description": "Deletes category logo.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Category id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Logo has been successfully deleted."
+                    },
+                    "400": {
+                        "description": "Category not found."
+                    }
+                }
+            }
+        },
+        "/coupons": {
+            "get": {
+                "tags": [
+                    "coupons"
+                ],
+                "summary": "Display a listing of the users coupons.",
+                "description": "Returns all coupons associated with users merchant.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "merchant_id",
+                        "in": "query",
+                        "description": "Id of users merchant.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "How many results want per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number.",
+                        "required": false,
+                        "type": "integer"
+               	    },
+                    {
+                        "name": "active",
+                        "in": "query",
+                        "description": "Active (value 0 - for inactive, 1 - for active).",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrurns all users coupons."
+                    },
+                    "400": {
+                        "description": "Merchant not found."
+                    },
+                    "422": {
+                        "description": "Validation Errors."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "coupons"
+                ],
+                "summary": "Creates coupon.",
+                "description": "Creates coupon. If user specifies merchant that is not associated with him/her, 404 will be responded.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "description": "Title of coupon.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Description of coupon.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "merchant_id",
+                        "in": "formData",
+                        "description": "Merchant id to which will coupon be bound for.",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "start_date",
+                        "in": "formData",
+                        "description": "Start date. Date format must be ISO8601.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "formData",
+                        "description": "End date. Date format must be ISO8601.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "description": "Base64 image.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns new coupon."
+                    },
+                    "403": {
+                        "description": "User can only add coupons to his/hers merchants."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            }
+        },
+        "/coupons/{id}": {
+            "get": {
+                "tags": [
+                    "coupons"
+                ],
+                "summary": "Display Coupon.",
+                "description": "Returns requested coupon and associated merchant. If coupon doesn't exist or coupon isn't in users property 404 will be responded. ",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Coupon Id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns requested coupon."
+                    },
+                    "400": {
+                        "description": "Coupon not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "coupons"
+                ],
+                "summary": "Update Coupon.",
+                "description": "Updates requested coupon if it exist. Otherwise 404 will be responded.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Coupons Id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "description": "Title of coupon.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Description of coupon.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "merchant_id",
+                        "in": "formData",
+                        "description": "Merchant id to which will coupon be bound for.",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "start_date",
+                        "in": "formData",
+                        "description": "Start date. Date format must be ISO8601.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "formData",
+                        "description": "End date. Date format must be ISO8601.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns requested coupon."
+                    },
+                    "400": {
+                        "description": "Coupon not found."
+                    },
+                    "403": {
+                        "description": "User can only add coupons to his/hers merchants."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "coupons"
+                ],
+                "summary": "Removes coupon.",
+                "description": "Deletes coupon if it exists and if it is associated with user. Otherwise 400 will be responded. ",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Coupon Id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Coupon not found."
+                    },
+                    "200": {
+                        "description": "Coupon has been successfully deleted."
+                    }
+                }
+            }
+        },
+        "/coupons/{id}/activate": {
+            "put": {
+                "tags": [
+                    "coupons"
+                ],
+                "summary": "Activates Coupon.",
+                "description": "Activates coupon, if it isn't already active and if the coupon dates are correct. ",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Coupon Id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Coupon has been successfully activated."
+                    },
+                    "400": {
+                        "description": "Coupon not found."
+                    },
+                    "409": {
+                        "description": "Coupon is already active."
+                    },
+                    "422": {
+                        "description": "Coupon can not be activated. Check the dates."
+                    }
+                }
+            }
+        },
+        "/coupons/{id}/deactivate": {
+            "put": {
+                "tags": [
+                    "coupons"
+                ],
+                "summary": "Deactivates Coupon.",
+                "description": "Deactivates coupon, if it isn't already deactive. ",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Coupon Id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Coupon has been successfully deactivated."
+                    },
+                    "400": {
+                        "description": "Coupon not found."
+                    },
+                    "409": {
+                        "description": "Coupon is already deactive."
+                    }
+                }
+            }
+        },
+        "/coupons/{coupon_id}/upload-file": {
+            "post": {
+                "tags": [
+                    "coupons"
+                ],
+                "summary": "Upload file.",
+                "description": "Upload file.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "coupon_id",
+                        "in": "path",
+                        "description": "Coupon Id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "file",
+                        "in": "formData",
+                        "description": "File",
+                        "required": true,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File uploaded."
+                    },
+                    "403": {
+                        "description": "User can only add file to his/hers coupons."
+                    },
+                    "422": {
+                        "description": "Validation error."
+                    }
+                }
+            }
+        },
+        "/coupons/{coupon_id}/remove-file/{file_id}": {
+            "delete": {
+                "tags": [
+                    "coupons"
+                ],
+                "summary": "Remove file.",
+                "description": "Upload file.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "coupon_id",
+                        "in": "path",
+                        "description": "Coupon id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "file_id",
+                        "in": "path",
+                        "description": "File Id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File has been successfully deleted."
+                    },
+                    "403": {
+                        "description": "User can only remove file from his/hers coupons."
+                    }
+                }
+            }
+        },
+        "/merchants": {
+            "get": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Display a listing of the merchants.",
+                "description": "Returns merchants.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "How many results want per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Column name for sort. (- before name for desc)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search by merchant name or shopping center name.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "filters[]",
+                        "in": "query",
+                        "description": "Array with categories ids for filter merchants by category.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns merchants and count of merchants number."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Creates merchant.",
+                "description": "Creates merchant.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "Merchant name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "area_id",
+                        "in": "formData",
+                        "description": "Area id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "description": "User id (required if role isn't user)",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "shopping_center_id",
+                        "in": "formData",
+                        "description": "Shopping center id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "shopping_center_name",
+                        "in": "formData",
+                        "description": "Shopping center name (required without shopping center id)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "city",
+                        "in": "formData",
+                        "description": "City name (required without shopping center id)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "address",
+                        "in": "formData",
+                        "description": "Address (required without shopping center id)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "zip",
+                        "in": "formData",
+                        "description": "Zip code (required without shopping center id)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "phone",
+                        "in": "formData",
+                        "description": "Phone number",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "website",
+                        "in": "formData",
+                        "description": "Website url",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "categories[]",
+                        "in": "formData",
+                        "description": "Array of merchant category ids.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "suite_number",
+                        "in": "formData",
+                        "description": "Suite number",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "lon",
+                        "in": "formData",
+                        "description": "Longitude",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "lat",
+                        "in": "formData",
+                        "description": "Latitude",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Merchant description",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns new merchant."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            }
+        },
+        "/merchants/{id}": {
+            "get": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Returns merchant.",
+                "description": "Returns merchant.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Merchant id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns merchant."
+                    },
+                    "400": {
+                        "description": "Merchant not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Updates merchant.",
+                "description": "Updates merchant.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Merchant id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "Merchant name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "area_id",
+                        "in": "formData",
+                        "description": "Area id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "description": "User id(requiered if role is user)",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "shopping_center_id",
+                        "in": "formData",
+                        "description": "Shopping center id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "shopping_center_name",
+                        "in": "formData",
+                        "description": "Shopping center name (required without shopping center id)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "city",
+                        "in": "formData",
+                        "description": "City name (required without shopping center id)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "address",
+                        "in": "formData",
+                        "description": "Address (required without shopping center id)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "zip",
+                        "in": "formData",
+                        "description": "Zip code (required without shopping center id)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "phone",
+                        "in": "formData",
+                        "description": "Phone number",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "website",
+                        "in": "formData",
+                        "description": "Website url",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "categories[]",
+                        "in": "formData",
+                        "description": "Array of merchant category ids.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "suite_number",
+                        "in": "formData",
+                        "description": "Suite number",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "lon",
+                        "in": "formData",
+                        "description": "Longitude",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "lat",
+                        "in": "formData",
+                        "description": "Latitude",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Merchant description",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Merchant has been successfully updated."
+                    },
+                    "400": {
+                        "description": "Merchant not found."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Removes merchant.",
+                "description": "Deletes merchant.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Merchant id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Merchant has been successfully deleted."
+                    },
+                    "400": {
+                        "description": "Merchant not found."
+                    }
+                }
+            }
+        },
+        "/merchants/count": {
+            "get": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Returns count of merchants.",
+                "description": "Returns count of merchants.",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns count of merchants."
+                    }
+                }
+            }
+        },
+        "/merchants/unapproved": {
+            "get": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Returns all unapproved merchants.",
+                "description": "Returns all unapproved merchants.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "How many results want per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Column name for sort. (- before name for desc)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search by merchant name.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns all unapproved merchants."
+                    }
+                }
+            }
+        },
+        "/merchants/{id}/approve": {
+            "put": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Approve merchants.",
+                "description": "Approve merchant.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Merchant id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns merchant."
+                    },
+                    "400": {
+                        "description": "Merchant not found."
+                    }
+                }
+            }
+        },
+        "/merchants/{id}/disapprove": {
+            "put": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Disapproved merchants.",
+                "description": "Disapproved merchant.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Merchant id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns success message."
+                    },
+                    "400": {
+                        "description": "Merchant not found."
+                    }
+                }
+            }
+        },
+        "/merchants/unapproved-count": {
+            "get": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Returns count of unapproved merchants.",
+                "description": "Returns count of unapproved merchants.",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns count of unapproved merchants."
+                    }
+                }
+            }
+        },
+        "/merchants/{id}/upload-file": {
+            "post": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Upload logo.",
+                "description": "Deletes merchant logo.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Merchant id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "logo",
+                        "in": "formData",
+                        "description": "Logo",
+                        "required": true,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Logo has been successfully uploaded."
+                    },
+                    "400": {
+                        "description": "Merchant not found."
+                    }
+                }
+            }
+        },
+        "/merchants/{id}/remove-file": {
+            "delete": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Removes logo.",
+                "description": "Deletes merchant logo.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Merchant id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Logo has been successfully deleted."
+                    },
+                    "400": {
+                        "description": "Merchant not found."
+                    }
+                }
+            }
+        },
+        "/merchants/area/count": {
+            "get": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Returns merchants count in area.",
+                "description": "Returns merchants count in area.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "Latitude",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "description": "Longitude",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns merchants count in area."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            }
+        },
+        "/merchants/{id}/coupons": {
+            "get": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Display coupons of requested merchant.",
+                "description": "Returns coupons.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Merchant id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Sort by",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns coupons."
+                    },
+                    "400": {
+                        "description": "Merchant not found."
+                    }
+                }
+            }
+        },
+        "/shopping-centers/{id}/merchants": {
+            "get": {
+                "tags": [
+                    "shopping centers"
+                ],
+                "summary": "Display merchants in requested shopping center.",
+                "description": "Displays all merchants in requested shopping center.\n     *                  If filters parameter is supplied, the function returns only merchants that have requested categories.\n     *                  If lat and lon parameters are supllied, the function calculates distance and sorts the response.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Shopping center id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "filters[]",
+                        "in": "query",
+                        "description": "Array of category ids.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "Latitude",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "description": "Longitude",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "How many results want per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Column name for sort. (- before name for desc)",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns merchant."
+                    },
+                    "400": {
+                        "description": "Shopping center not found."
+                    }
+                }
+            }
+        },
+        "/merchants/get-address/{zip}": {
+            "get": {
+                "tags": [
+                    "merchants"
+                ],
+                "summary": "Returns address for specific zip code.",
+                "description": "Returns address for specific zip code.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "zip",
+                        "in": "path",
+                        "description": "Zip code",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns address for specific zip code."
+                    }
+                }
+            }
+        },
+        "/newsletters/subscribe": {
+            "post": {
+                "tags": [
+                    "newsletter"
+                ],
+                "summary": "Subscribes email to newsletters.",
+                "description": "Subscribes email to newsletters",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "E-mail",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns email."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            }
+        },
+        "/search": {
+            "get": {
+                "tags": [
+                    "search"
+                ],
+                "summary": "Returns areas, shopping centers and merchants.",
+                "description": "Returns merchant.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Name to search for.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit for search responses.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "distance",
+                        "in": "query",
+                        "description": "Wanted distance for shopping centers and merchants.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "Users latitude. Required if distance provided.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "description": "Users longitude. Required if distance provided.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "filters[]",
+                        "in": "query",
+                        "description": "Array with category ids.",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns merchant."
+                    }
+                }
+            }
+        },
+        "/shopping-centers": {
+            "get": {
+                "tags": [
+                    "shopping centers"
+                ],
+                "summary": "Display a listing of the shopping centers.",
+                "description": "Returns all shopping centers.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "How many results want per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Column name for sort. (- before name for desc)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "area",
+                        "in": "query",
+                        "description": "Area id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search by shopping centers name.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns all shopping centers."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "shopping centers"
+                ],
+                "summary": "Creates shopping center.",
+                "description": "Creates shopping center.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "description": "User id (If sc user create new shopping center to assign it to him)",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "Shopping center name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "area_id",
+                        "in": "formData",
+                        "description": "Area id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Shopping center description, min length 10 characters",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "address",
+                        "in": "formData",
+                        "description": "Shopping center address, min length 3 characters",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "city",
+                        "in": "formData",
+                        "description": "Shopping center city, min length 3 characters",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "zip",
+                        "in": "formData",
+                        "description": "Shopping center zip code, min length 3 characters",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "website",
+                        "in": "formData",
+                        "description": "Shopping center website url",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "working_hours",
+                        "in": "formData",
+                        "description": "Working hours",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns new shopping center."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            }
+        },
+        "/shopping-centers/{id}": {
+            "get": {
+                "tags": [
+                    "shopping centers"
+                ],
+                "summary": "Display shopping center.",
+                "description": "Returns shopping center.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Shopping center id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns shopping center."
+                    },
+                    "400": {
+                        "description": "Shopping center not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "shopping centers"
+                ],
+                "summary": "Updates shopping center.",
+                "description": "Updates shopping center.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Shopping center id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "Shopping center name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "area_id",
+                        "in": "formData",
+                        "description": "Area id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Shopping center description, min length 10 characters",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "address",
+                        "in": "formData",
+                        "description": "Shopping center address, min length 3 characters",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "city",
+                        "in": "formData",
+                        "description": "Shopping center city, min length 3 characters",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "zip",
+                        "in": "formData",
+                        "description": "Shopping center zip code, min length 3 characters",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "website",
+                        "in": "formData",
+                        "description": "Shopping center website url",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "working_hours",
+                        "in": "formData",
+                        "description": "Working hours",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Shopping center has been successfully updated."
+                    },
+                    "400": {
+                        "description": "Shopping center not found."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "shopping centers"
+                ],
+                "summary": "Removes shopping center.",
+                "description": "Deletes shopping centers.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Shopping center id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Shopping center has been successfully deleted."
+                    },
+                    "400": {
+                        "description": "Shopping center not found."
+                    },
+                    "422": {
+                        "description": "Can not delete shopping center. Some merchant is registered in it."
+                    }
+                }
+            }
+        },
+        "/areas/{id}/shopping-centers": {
+            "get": {
+                "tags": [
+                    "areas"
+                ],
+                "summary": "Display shopping centers in requested area (by id).",
+                "description": "Shopping centers are ordered by distance if coordinates are supplied, or by alphabet if they aren't.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Area id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "Latitude",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "description": "Longitude",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "filters[]",
+                        "in": "query",
+                        "description": "Array of category ids",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "How many results want per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Column name for sort. (- before name for desc)",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns shopping centers."
+                    },
+                    "400": {
+                        "description": "Area not found."
+                    }
+                }
+            }
+        },
+        "/shopping-centers/area-name/{name}": {
+            "get": {
+                "tags": [
+                    "shopping centers"
+                ],
+                "summary": "Display shopping centers in requested area (by name).",
+                "description": "Shopping centers are ordered by distance if coordinates are supplied, or by alphabet if they aren't.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "Area name",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "Latitude",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "description": "Longitude",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "filters[]",
+                        "in": "query",
+                        "description": "Array of category ids",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns shopping centers."
+                    },
+                    "400": {
+                        "description": "Area not found."
+                    }
+                }
+            }
+        },
+        "/states": {
+            "get": {
+                "tags": [
+                    "states"
+                ],
+                "summary": "Search states.",
+                "description": "Search states.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "How many results want per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Column name for sort. (- before name for desc)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search by states name.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return list of states."
+                    }
+                }
+            }
+        },
+        "/shopping-centers/unapproved": {
+            "get": {
+                "tags": [
+                    "shopping centers"
+                ],
+                "summary": "Returns all unapproved shopping centers.",
+                "description": "Returns all unapproved shopping centers.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "How many results want per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Column name for sort. (- before name for desc)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search by shopping center name.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns all unapproved shopping centers."
+                    }
+                }
+            }
+        },
+        "/shopping-centers/{id}/approve": {
+            "put": {
+                "tags": [
+                    "shopping centers"
+                ],
+                "summary": "Approve shopping centers.",
+                "description": "Approve shopping center.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Shopping center id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns shopping center."
+                    },
+                    "400": {
+                        "description": "Shopping centers not found."
+                    }
+                }
+            }
+        },
+        "/shopping-centers/{id}/disapprove": {
+            "put": {
+                "tags": [
+                    "shopping centers"
+                ],
+                "summary": "Disapproved shopping centers.",
+                "description": "Disapproved shopping center.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Shopping center id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns success message."
+                    },
+                    "400": {
+                        "description": "Shopping center not found."
+                    }
+                }
+            }
+        },
+        "/shopping-centers/unapproved-count": {
+            "get": {
+                "tags": [
+                    "shopping centers"
+                ],
+                "summary": "Returns count of unapproved shopping centers.",
+                "description": "Returns count of unapproved shopping centers.",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns count of unapproved shopping centers."
+                    }
+                }
+            }
+        },
+        "/shopping-centers/{id}/upload-file": {
+            "post": {
+                "tags": [
+                    "shopping centers"
+                ],
+                "summary": "Upload logo.",
+                "description": "Upload sc logo.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Sc id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "logo",
+                        "in": "formData",
+                        "description": "Logo",
+                        "required": true,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Logo has been successfully uploaded."
+                    },
+                    "400": {
+                        "description": "Sc not found."
+                    }
+                }
+            }
+        },
+        "/shopping-centers/{id}/remove-file": {
+            "delete": {
+                "tags": [
+                    "shopping centers"
+                ],
+                "summary": "Removes logo.",
+                "description": "Deletes sc logo.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Sc id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Logo has been successfully deleted."
+                    },
+                    "400": {
+                        "description": "Sc not found."
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Display a listing of the users.",
+                "description": "Returns all users.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "How many results want per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Column name for sort. (- before name for desc)",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search by user name.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "User type.",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns all users."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Create new user.",
+                "description": "Create new user.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "first_name",
+                        "in": "formData",
+                        "description": "First name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "last_name",
+                        "in": "formData",
+                        "description": "Last name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "User email, must be valid email address.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "formData",
+                        "description": "Password confirmation",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "Type (1 for user 2 for shopping center user - default value is for user)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "merchant_id",
+                        "in": "formData",
+                        "description": "Merchant id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "shopping_center_id",
+                        "in": "formData",
+                        "description": "Shopping center id",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns new user."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Update user details.",
+                "description": "Update user details.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id (if role not admin id must be same with logged user)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "first_name",
+                        "in": "formData",
+                        "description": "First name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "last_name",
+                        "in": "formData",
+                        "description": "Last name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "Type (Allowed only if user have admin permissions)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "notifications",
+                        "in": "formData",
+                        "description": "Notifications (Allowed only if user have admin permissions)",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns user."
+                    },
+                    "400": {
+                        "description": "User not found."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Removes user.",
+                "description": "Deletes user.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User has been successfully deleted."
+                    },
+                    "400": {
+                        "description": "User not found."
+                    }
+                }
+            }
+        },
+        "/users/{id}/change-password": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Change password.",
+                "description": "Change password.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id (if role not admin id must be same with logged user)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "old_password",
+                        "in": "formData",
+                        "description": "Old password(current) - required if change your password or if role is not admin",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "New password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "formData",
+                        "description": "New password confirmation",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns user."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    },
+                    "403": {
+                        "description": "Old password is wrong."
+                    },
+                    "400": {
+                        "description": "User not found."
+                    }
+                }
+            }
+        },
+        "/users/{id}/activate": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Activate user.",
+                "description": "Create new user.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns user."
+                    },
+                    "400": {
+                        "description": "User not found."
+                    }
+                }
+            }
+        },
+        "/users/{id}/deactivate": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Deactivate user.",
+                "description": "Create new user.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns user."
+                    },
+                    "400": {
+                        "description": "User not found."
+                    }
+                }
+            }
+        },
+        "/users/get-info": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Display count.",
+                "description": "Returns coupons.",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns count."
+                    }
+                }
+            }
+        },
+        "/users/confirm/email": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Confirm email.",
+                "description": "Confirm email.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "formData",
+                        "description": "Token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "data",
+                        "in": "formData",
+                        "description": "Data (this is encrypted email, you receive it when user click on link in email).",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns user."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    },
+                    "400": {
+                        "description": "User not found."
+                    },
+                    "403": {
+                        "description": "Token is expired or wrong."
+                    }
+                }
+            }
+        },
+        "/users/notifications/enable": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Enabled notifications.",
+                "description": "Enabled notifications.",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Enabled notifications."
+                    }
+                }
+            }
+        },
+        "/users/notifications/disable": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Disabled notifications.",
+                "description": "Disabled notifications.",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Disabled notifications."
+                    }
+                }
+            }
+        },
+        "/users/check-token": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Check token.",
+                "description": "Check token.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "formData",
+                        "description": "Token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "data",
+                        "in": "formData",
+                        "description": "Data (this is encrypted email, you receive it when user click on link in email).",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "Type (1 - reset password, 2 - confirm email).",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns status."
+                    },
+                    "422": {
+                        "description": "Validation errors."
+                    },
+                    "400": {
+                        "description": "User not found."
+                    }
+                }
+            }
+        },
+        "/users/me": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Returns user.",
+                "description": "Returns user.",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns user."
+                    },
+                    "400": {
+                        "description": "User not found."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "description": "Class ApiController",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "description": "Class ApiController",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

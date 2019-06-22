@@ -1,0 +1,55 @@
+<md-dialog aria-label="Modal" flex>
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 ng-bind="coupon.id ? 'Edit Coupon' : 'Add Coupon'"></h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="fa" md-font-icon="fa-times" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+                    <md-tab label="Details">
+                        <md-content class="md-padding">
+                            <div layout="column">
+                                <md-input-container flex>
+                                    <label>Title</label>
+                                    <input ng-model="coupon.title" required type="text">
+                                </md-input-container>
+                                <md-input-container flex>
+                                    <label>Description</label>
+                                    <textarea maxlength="200" ng-model="coupon.description" required rows="3" md-select-on-focus></textarea>
+                                    <em pull-right>{{coupon.description.length ? coupon.description.length : 0}}/200</em>
+                                </md-input-container>
+                            </div>
+                            <div layout="row">
+                                <md-input-container flex>
+                                    <label>Start Date</label>
+                                    <md-datepicker ng-model="coupon.start_date"
+                                                   md-placeholder="Start Date"
+                                                   md-open-on-focus></md-datepicker>
+                                </md-input-container>
+                                <md-input-container flex>
+                                    <label>End Date</label>
+                                    <md-datepicker ng-model="coupon.end_date"
+                                                   md-placeholder="End Date"
+                                                   md-open-on-focus></md-datepicker>
+                                </md-input-container>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button type="button" class="md-raised" ng-click="cancel()">Back</md-button>
+            <md-button type="submit" ng-click="save()" class="md-raised md-primary" ng-disabled="form.$invalid || loading">
+                <span ng-show="!loading">Save</span>
+                <span ng-show="loading"><i class="fa fa-cog fa-spin"></i> Please wait...</span>
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

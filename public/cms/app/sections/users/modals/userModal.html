@@ -1,0 +1,93 @@
+<md-dialog aria-label="Modal" flex>
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>User {{user.id ? 'Edit' : 'Add'}}</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="fa" md-font-icon="fa-times" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="row" ng-if="!profileEdit">
+                    <md-input-container>
+                        <label>User type</label>
+                        <md-select ng-model="user.type" ng-change="roleChanged()">
+                            <md-option ng-if="userRole.id" ng-repeat="userRole in userRoles" ng-value="userRole.id">
+                                {{userRole.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <div flex ng-if="user.type == 1 && !user.id">
+                        <md-autocomplete md-input-name="merchant" md-selected-item="selectedMerchant" md-search-text="data.searchMerchantText" md-selected-item-change="selectMerchant(merchant)"
+                                         md-items="merchant in loadMerchants(data.searchMerchantText)" md-item-text="merchant.name" md-require-match md-delay="300"
+                                         md-min-length="0" md-floating-label="Merchant">
+                            <md-item-template>
+                                <span md-highlight-text="data.searchMerchantText">{{merchant.name}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No matching "{{data.searchMerchantText}}" merchants were found.
+                            </md-not-found>
+                        </md-autocomplete>
+                    </div>
+                    <div flex ng-if="user.type == 2 && !user.id">
+                        <md-autocomplete md-input-name="shippingCenter" md-selected-item="selectedShoppingCenter" md-search-text="data.searchShoppingCenterText" md-selected-item-change="selectShoppingCenter(shoppingCenter)"
+                                         md-items="shoppingCenter in loadShoppingCenters(data.searchShoppingCenterText)" md-item-text="shoppingCenter.name" md-require-match md-delay="300"
+                                         md-min-length="0" md-floating-label="Shopping Center">
+                            <md-item-template>
+                                <span md-highlight-text="data.searchShoppingCenterText">{{shoppingCenter.name}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No matching "{{data.searchShoppingCenterText}}" shopping centers were found.
+                            </md-not-found>
+                        </md-autocomplete>
+                    </div>
+                </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>First Name</label>
+                        <input ng-model="user.first_name" required type="text">
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Last Name</label>
+                        <input ng-model="user.last_name" required type="text">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Email</label>
+                        <input required ng-model="user.email" type="text" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Password</label>
+                        <input ng-required="!user.id" ng-minlength="6" ng-model="user.password" type="password">
+                        <em>* minimum 6 characters long</em>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Password Confirmation</label>
+                        <input ng-required="!user.id" ng-model="user.password_confirmation" type="password" ng-minlength="6">
+                    </md-input-container>
+                </div>
+                <div layout="row" ng-if="user.type == 3 && user.id == session.user_id">
+                    <md-switch ng-model="user.notifications" ng-true-value="1" ng-false-value="0" aria-label="Email notification">
+                        Email notification: {{ user.notifications ? 'Yes' : 'No'}}
+                    </md-switch>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button type="button" class="md-raised" ng-click="cancel()">Back</md-button>
+            <md-button type="submit" ng-click="save()" class="md-raised md-primary" ng-disabled="form.$invalid || loading || user.password != user.password_confirmation">
+                <span ng-show="loading">Please wait...</span>
+                <span ng-show="!loading && user.id">Update</span>
+                <span ng-show="!loading && !user.id">Add</span>
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

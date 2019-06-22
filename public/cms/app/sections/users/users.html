@@ -1,0 +1,114 @@
+<div>
+    <div layout="column">
+        <span class="table-title padding-bottom">
+            <!-- <i class="fa fa-database" aria-hidden="true"></i> -->
+             Users</span>
+        <form novalidate flex layout="row" ng-submit="search()">
+            <md-input-container>
+                <label>User type</label>
+                <md-select ng-model="params.type" ng-change="filterRoleChanges()">
+                    <md-option ng-repeat="userRole in userRoles" ng-value="userRole.id">
+                        {{userRole.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container flex>
+                <label>Search</label>
+                <input type="text" autocomplete="off" ng-disabled="!total && !params.search" ng-model="params.search" ng-change="search()">
+            </md-input-container>
+            <!-- <md-button class="md-fab md-mini" type="submit" ng-disabled="!total && !params.search" aria-label="Search">
+                <i class="fa fa-search"></i>
+            </md-button> -->
+            <md-input-container class="no">
+                <md-button class="md-raised md-primary" type="button" ng-click="openUserAdd()" aria-label="Add">
+                    <span class="icon-lic-add btn-icon"></span>Add New User
+                </md-button>
+            </md-input-container>
+        </form>
+        <h4 ng-show="loading" class="text-center">Please wait...</h4>
+        <md-table-container ng-if="total > 0 && !loading" class="user-table">
+            <table md-table md-progress="promise">
+                <thead md-head md-order="params.sort_by" md-on-reorder="sortUsers">
+                    <tr md-row>
+                        <th md-column md-order-by="id">
+                            <span>No.</span>
+                            <i class="fa fa-sort" aria-hidden="true">
+                                <md-tooltip md-direction="bottom">Sort by No.</md-tooltip>
+                            </i>
+                        </th>
+                        <th md-column md-order-by="first_name">
+                            <span>First name</span>
+                            <i class="fa fa-sort" aria-hidden="true">
+                                <md-tooltip md-direction="bottom">Sort by First name</md-tooltip>
+                            </i>
+                        </th>
+                        <th md-column md-order-by="last_name">
+                            <span>Last name</span>
+                            <i class="fa fa-sort" aria-hidden="true">
+                                <md-tooltip md-direction="bottom">Sort by Last name</md-tooltip>
+                            </i>
+                        </th>
+												<th md-column md-order-by="email">
+														<span>Email</span>
+														<i class="fa fa-sort" aria-hidden="true">
+																<md-tooltip md-direction="bottom">Sort by Email</md-tooltip>
+														</i>
+												</th>
+                        <th md-column md-order-by="type">
+                            <span>User type</span>
+                            <i class="fa fa-sort" aria-hidden="true">
+                                <md-tooltip md-direction="bottom">Sort by User type</md-tooltip>
+                            </i>
+                        </th>
+                        <th md-column>Active</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="user in users track by $index">
+                        <td md-cell ng-bind="user.id"></td>
+                        <td md-cell ng-bind="user.first_name ? user.first_name : '-'"></td>
+                        <td md-cell ng-bind="user.last_name ? user.last_name : '-'"></td>
+                        <td md-cell ng-bind="user.email"></td>
+                        <td md-cell ng-bind="userRolesObject[user.type]"></td>
+                        <td md-cell width="10%">
+                            <md-switch nomrg nopadd ng-change="toggleActive(user)" ng-model="user.active" ng-true-value="1" ng-false-value="0" aria-label="Active"></md-switch>
+                        </td>
+                        <td md-cell text-right>
+                            <md-menu md-position-mode="target-right target">
+                                <md-button aria-label="Open demo menu" ng-click="$mdOpenMenu($event)">
+                                    Options <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </md-button>
+                                <md-menu-content width="4">
+                                    <md-menu-item>
+                                        <md-button ng-click="openUserEdit(user)">
+                                            <div layout="row" flex>
+                                                <span>Edit</span>
+                                            </div>
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="openPasswordChange(user)">
+                                            <div layout="row" flex>
+                                                <span>Change password</span>
+                                            </div>
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="deleteUser($event, user)">
+                                            <div layout="row" flex>
+                                                <span flex>Delete</span>
+                                            </div>
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+        <h4 ng-show="!loading && !total && !params.search" class="text-center">Currently there are no users in your database.</h4>
+        <md-table-pagination ng-if="total > 0 && !loading" md-options="[10, 20, 30]" md-limit="params.limit" md-page="params.page"
+            md-total="{{total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<div>
+    <h4 ng-if="loading" class="text-center">Please wait...</h4>
+    <div layout="column" ng-if="!loading">
+        <span class="table-title">Coupons for {{merchant.name}}</span>
+        <div layout="row">
+						<!-- <md-input-container>
+								<md-button class="md-raised" aria-label="back" ng-click="goBack()">
+										<i class="fa fa-arrow-left" aria-hidden="true"></i>
+								</md-button>
+						</md-input-container> -->
+						<md-input-container class="sort-by-container-fix">
+								<label>Sort by</label>
+								<md-select ng-change="sortBy()" ng-model="params.sort_by">
+										<md-option value="-active">Active State</md-option>
+										<md-option value="active">Inactive State</md-option>
+										<md-option value="start_date">Date Start</md-option>
+										<md-option value="end_date">Date End</md-option>
+								</md-select>
+						</md-input-container>
+						<md-input-container class="padd">
+								<md-button class="md-raised md-primary" ng-click="openCouponAdd()" aria-label="Add Coupon">
+										<span class="icon-lic-add btn-icon"></span> Add Coupon
+								</md-button>
+						</md-input-container>
+                        <md-input-container class="padd">
+                                <md-button class="md-raised md-primary" ng-click="openPixieEditor()" aria-label="Create Coupon">
+                                       <span class="icon-lic-magic btn-icon"></span> Create Coupon
+                                </md-button>
+                        </md-input-container>
+        </div>
+    </div>
+    <div class="md-padding" layout="row" layout-wrap ng-if="!loading">
+        <md-card class="coupon-card-shadow" md-theme="default" md-theme-watch ng-repeat="coupon in coupons">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Title: {{coupon.title}}</span>
+										<span class="md-subhead">
+												Date: {{coupon.start_date}} - {{coupon.end_date}}
+												<p class="fix-margin">Status: {{coupon.active ? 'Active': 'Inactive'}}</p>
+										</span>
+                    <div layout="row" style="width:300px">{{coupon.description}}</div>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <div class="md-media-md card-media">
+                        <!-- <i ng-if="!coupon.image.url" class="fa fa-picture-o" aria-hidden="true"></i> -->
+                        <span ng-if="!coupon.image.url" class="icon-lic-image" aria-hidden="true"></span>
+                        <img ng-if="coupon.image.url" ng-src="{{coupon.image.url}}" />
+                    </div>
+                </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button class="edit-color"
+                           ng-click="openCouponEdit(coupon)"
+                           ng-disabled="coupon.toggleLoading">
+                    <span class="icon-lic-edit btn-icon"></span> Edit
+                </md-button>
+                <md-button ng-class="{'active-color': !coupon.active}" ng-disabled="coupon.toggleLoading" ng-click="toggleActive(coupon)">
+                    <span ng-show="coupon.toggleLoading"><i class="fa fa-cog fa-spin"></i> Please wait...</span>
+                    <span class="inactive-color" ng-show="coupon.active && !coupon.toggleLoading">
+                        <span class="icon-lic-inactive btn-icon"></span> Deactivate
+                    </span>
+                    <span ng-show="!coupon.active && !coupon.toggleLoading">
+                        <span class="icon-lic-active btn-icon"></span> Activate
+                    </span>
+                </md-button>
+                <md-button class="delete-color"
+                           ng-click="removeModal($event, coupon)"
+                           ng-disabled="coupon.toggleLoading || coupon.deleteLoading">
+                    <span ng-show="coupon.deleteLoading"><i class="fa fa-cog fa-spin"></i> Please wait...</span>
+                    <span ng-show="!coupon.deleteLoading">
+                        <span class="icon-lic-delete btn-icon"></span> Delete
+                    </span>
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+    <h4 ng-show="!loading && !total && !params.search" class="text-center">Currently there no coupones in your database for {{merchant.name}}.</h4>
+    <md-table-pagination ng-if="total > 0"
+                         md-options="[10, 20, 30]"
+                         md-limit="params.limit"
+                         md-page="params.page"
+                         md-total="{{total}}"
+                         md-on-paginate="onPaginate"
+                         md-page-select></md-table-pagination>
+</div>

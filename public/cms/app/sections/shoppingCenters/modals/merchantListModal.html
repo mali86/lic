@@ -1,0 +1,71 @@
+<md-dialog aria-label="Modal" flex>
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Merchants</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="fa" md-font-icon="fa-times" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <md-table-container ng-if="total > 0 && !loading">
+                <table md-table>
+                    <thead md-head md-order="params.sort_by" md-on-reorder="sortMerchants">
+                    <tr md-row>
+                        <th md-column md-order-by="id">
+                            <span>No.</span>
+                            <i class="fa fa-sort" aria-hidden="true">
+                                <md-tooltip md-direction="bottom">Sort by Id</md-tooltip>
+                            </i>
+                        </th>
+                        <th md-column md-order-by="name">
+                            <span>Name</span>
+                            <i class="fa fa-sort" aria-hidden="true">
+                                <md-tooltip md-direction="bottom">Sort by Name</md-tooltip>
+                            </i>
+                        </th>
+                        <th md-column>
+                            <span>Shopping Center</span>
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody md-body>
+                    <tr md-row ng-repeat="merchant in merchants track by $index">
+                        <td md-cell ng-bind="merchant.id"></td>
+                        <td md-cell ng-bind="merchant.name"></td>
+                        <td md-cell ng-bind="merchant.shopping_center_name ? merchant.shopping_center_name : '-'"></td>
+                        <td md-cell text-right>
+                            <md-button aria-label="Coupons" class="md-raised" ng-click="goToCouponsPage(merchant)">
+                                <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                                <md-tooltip md-direction="bottom">Coupons</md-tooltip>
+                            </md-button>
+                            <md-button aria-label="Edit" class="md-raised"
+                                       ng-click="openMerchantModal($event, merchant)">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                <md-tooltip md-direction="bottom">Edit</md-tooltip>
+                            </md-button>
+                            <md-button aria-label="Remove" class="md-raised md-warn"
+                                       ng-click="removeModal($event, merchant)">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                <md-tooltip md-direction="bottom">Delete</md-tooltip>
+                            </md-button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <h4 ng-show="!loading && !total" class="text-center margin-top-10">Currently there are no merchants for
+                selected shopping centar.</h4>
+            <h4 ng-show="loading" class="text-center">Please wait...</h4>
+            <md-table-pagination ng-if="total > 0 && !loading" md-options="[10, 20, 30]" md-limit="params.limit"
+                                 md-page="params.page"
+                                 md-total="{{total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button type="button" class="md-raised" ng-click="cancel()">Back</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

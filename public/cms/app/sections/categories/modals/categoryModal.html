@@ -1,0 +1,41 @@
+<md-dialog aria-label="Modal" flex>
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Category {{category.id ? 'Edit - ' + category.name : 'Add'}}</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="fa" md-font-icon="fa-times" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Name</label>
+                        <input ng-model="category.name" name="name" required type="text">
+                        <em class="error-message" ng-show="form.name.$error.required">Please enter category name</em>
+                    </md-input-container>
+                </div>
+                <div layout="column">
+                    <h4>Category Image</h4>
+                    <div ng-if="imagePreparedForUpload" file="imagePreparedForUpload._file" width="140" height="140" ng-thumb></div>
+                    <div class="merchant-logo-container" ng-if="category.logo && !imagePreparedForUpload">
+                        <a href="#" ng-click="removeLogo()"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+                        <img width="140" height="140" ng-src="{{category.logo}}">
+                    </div>
+                </div>
+                <input type="file" nv-file-select="" uploader="uploader" />
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button type="button" class="md-raised" ng-click="cancel()">Back</md-button>
+            <md-button type="submit" ng-click="save()" class="md-raised md-primary" ng-disabled="form.$invalid || loading">
+                <span ng-show="loading">Please wait...</span>
+                <span ng-show="!loading && category.id">Update Category </span>
+                <span ng-show="!loading && !category.id">Add Category </span>
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

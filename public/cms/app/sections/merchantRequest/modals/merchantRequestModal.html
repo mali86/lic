@@ -1,0 +1,58 @@
+<md-dialog aria-label="Modal" flex>
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Merchant request review</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="fa" md-font-icon="fa-times" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <table class="table">
+                    <tr>
+                        <td>Name</td>
+                        <td ng-bind="merchant.name"></td>
+                    </tr>
+                    <tr>
+                        <td>Area</td>
+                        <td ng-bind="merchant.areaName ? merchant.areaName : '-'"></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td ng-bind="merchant.address"></td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td ng-bind="merchant.city"></td>
+                    </tr>
+                    <tr>
+                        <td>Zip</td>
+                        <td ng-bind="merchant.zip"></td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td ng-bind="merchant.phone"></td>
+                    </tr>
+                    <tr>
+                        <td>Website</td>
+                        <td ng-bind="merchant.website"></td>
+                    </tr>
+                </table>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button type="button" class="md-raised" ng-click="cancel()">Back</md-button>
+            <md-button type="submit" ng-click="approve()" class="md-raised md-primary" ng-disabled="loadingApprove || loadingReject">
+                <span ng-show="!loadingApprove">Approve</span>
+                <span ng-show="loadingApprove">Please wait...</span>
+            </md-button>
+            <md-button type="submit" ng-click="reject()" class="md-raised md-warn" ng-disabled="loadingReject || loadingApprove">
+                <span ng-show="!loadingReject">Reject</span>
+                <span ng-show="loadingReject">Please wait...</span>
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

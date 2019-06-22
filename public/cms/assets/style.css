@@ -1,0 +1,910 @@
+[pull-right] { float: right; }
+[nomrg], [mrg="0"] { margin: 0px!important; }
+[nopadd], [padd="0"] { padding: 0px!important; }
+[pull-right] { float: right; }
+[overflow="none"] { overflow: none!important; }
+[vertical-align="middle"] { vertical-align: middle!important; }
+[text-right] { text-align: right; }
+[overflow-x="hidden"] { overflow-x: hidden; }
+[break-all] {word-break: break-all;}
+[font-size="20px"] {font-size: 20px;}
+[md-primary-color] {color: #607D8B;}
+[padd-left="3"] { padding-left: 3rem;}
+[padd-top="20px"] { padding-top: 20px;}
+[no-visible] { visibility: hidden; }
+
+/*font face*/
+
+@font-face {
+  font-family: 'lic';
+  src:  url('fonts/lic.eot?et0m5c');
+  src:  url('fonts/lic.eot?et0m5c#iefix') format('embedded-opentype'),
+    url('fonts/lic.ttf?et0m5c') format('truetype'),
+    url('fonts/lic.woff?et0m5c') format('woff'),
+    url('fonts/lic.svg?et0m5c#lic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-lic-"], [class*=" icon-lic-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'lic' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-lic-right-arrow:before {
+  content: "\e91c";
+}
+.icon-lic-f-one .path1:before {
+  content: "\e916";
+}
+.icon-lic-f-one .path2:before {
+  content: "\e917";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-lic-f-two .path1:before {
+  content: "\e918";
+}
+.icon-lic-f-two .path2:before {
+  content: "\e919";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-lic-f-three .path1:before {
+  content: "\e91a";
+}
+.icon-lic-f-three .path2:before {
+  content: "\e91b";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-lic-n-one:before {
+  content: "\e913";
+}
+.icon-lic-n-two:before {
+  content: "\e914";
+}
+.icon-lic-n-three:before {
+  content: "\e915";
+}
+.icon-lic-save:before {
+  content: "\e910";
+}
+.icon-lic-send-notification:before {
+  content: "\e911";
+}
+.icon-lic-update:before {
+  content: "\e912";
+}
+.icon-lic-active:before {
+  content: "\e900";
+}
+.icon-lic-add:before {
+  content: "\e901";
+}
+.icon-lic-areas:before {
+  content: "\e902";
+}
+.icon-lic-back:before {
+  content: "\e903";
+}
+.icon-lic-categories:before {
+  content: "\e904";
+}
+.icon-lic-coupon:before {
+  content: "\e905";
+}
+.icon-lic-dashboard:before {
+  content: "\e906";
+}
+.icon-lic-delete:before {
+  content: "\e907";
+}
+.icon-lic-edit:before {
+  content: "\e908";
+}
+.icon-lic-image:before {
+  content: "\e909";
+}
+.icon-lic-inactive:before {
+  content: "\e90a";
+}
+.icon-lic-magic:before {
+  content: "\e90b";
+}
+.icon-lic-merchants:before {
+  content: "\e90c";
+}
+.icon-lic-notifications:before {
+  content: "\e90d";
+}
+.icon-lic-settings:before {
+  content: "\e90e";
+}
+.icon-lic-users:before {
+  content: "\e90f";
+}
+
+/*end font face */
+
+/*CUSTOM BLUE LIC*/
+
+.nav-stepper {
+  margin: 0 10px;
+}
+
+.nav-stepper.step_two {
+  pointer-events: none;
+}
+
+#merchant-stepper form {
+  padding: 0;
+}
+
+#status-buttons span {
+  color: gray;
+  font-size: 32px;
+}
+
+#status-buttons a {
+  /*display: block;*/
+  text-decoration: none;
+  color: #155487;
+}
+
+#status-buttons {
+  margin-top: 20px;
+}
+
+#merchant-stepper #panel {
+  margin: 10px 0px;
+  float: none;
+  width: auto;
+}
+
+#panel #delete-button {
+  padding: 0 10px;
+  margin: 10px 0px;
+  background-color: #be282a !important;
+}
+
+#status-buttons a:hover, #status-buttons a:active, #status-buttons a:visited {
+  color: #155487;
+}
+
+#status-buttons a.active span {
+  color: #155487;
+}
+
+form>md-content {
+  padding-bottom: 30px;
+}
+
+md-content.lic-sidebar a.md-button.md-raised.md-focused {
+  background-color: #ffffff !important;
+  color: #155487;
+}
+
+.color-present {
+  padding: 10px;
+}
+
+.coupon-card-shadow {
+  box-shadow: 0 1px 20px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 10px !important;
+}
+
+.coupon-card-shadow .md-button span {
+  font-weight: bold;
+}
+
+.active-color {
+  color: #5eb360;
+}
+
+.inactive-color {
+  color: gray;
+}
+
+.edit-color {
+  color: #efad4d;
+}
+
+.coupon-card-shadow button.delete-color {
+  color: #e91e20;
+}
+
+.card-media span {
+  font-size: 90px;
+  color: gray;
+}
+
+md-card md-card-title md-card-title-media {
+  margin-top: 0px;
+}
+
+.coupon-card-shadow .md-button {
+  font-weight: bold;
+}
+
+.coupon-card-shadow .md-button:hover {
+  background-color: rgba(214, 214, 214, 0.2) !important;
+}
+
+.md-toolbar-tools a.back-button {
+  padding: 5px;
+  color: rgba(76, 76, 76, 0.8);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+md-switch .md-bar {
+  width: 30px;
+  top: 4px;
+  height: 12px;
+}
+
+md-switch .md-thumb {
+  height: 15px;
+  width: 15px;
+}
+
+md-switch.md-checked .md-thumb {
+  background-color: #155487;
+}
+
+md-switch.md-checked .md-bar {
+  background-color: rgba(21, 84, 135, 0.65);
+}
+
+md-switch.md-checked .md-ink-ripple {
+  color: rgba(21, 84, 135, 0.65);
+}
+
+.chart-container .md-toolbar-tools {
+  font-size: 14px;
+  height: 40px;
+}
+
+.chart-container-wrapper {
+  padding: 0px 10px;
+}
+
+.chart-container md-select.md-default-theme .md-select-value.md-select-placeholder, .chart-container md-select .md-select-value.md-select-placeholder {
+  color: white;
+}
+
+.chart-container md-select:not([disabled]):focus .md-select-value {
+  color: white;
+}
+
+.chart-container {
+  border: 1px solid #155487;
+  margin-top: 30px;
+  border-radius: 6px;
+}
+.chart-container md-content {
+  border-radius: 0px 0px 6px 6px;
+}
+
+.chart-container md-toolbar {
+  min-height: 40px;
+  border-radius: 6px 6px 0px 0px;
+}
+
+.table-title {
+  font-size: 30px;
+}
+
+button, html, input, select, textarea {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.md-whiteframe-z1 {
+  box-shadow: none;
+}
+
+md-toolbar#blue-lic-toolbar {
+  background-color: #e7e7e7;
+}
+
+.md-sidenav-left md-toolbar .md-icon-button {
+  color: white;
+}
+
+md-toolbar#blue-lic-toolbar .md-toolbar-tools .md-icon-button {
+  color: #4c4c4c;
+}
+
+md-toolbar#blue-lic-toolbar button {
+  color: #4c4c4c;
+}
+
+md-content.lic-sidebar a.md-button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+md-content.lic-sidebar a.md-button.md-raised {
+  background-color: #ffffff;
+}
+
+md-content.lic-sidebar a.md-button span {
+  margin-left: 5px;
+  margin-right: 15px;
+  font-size: 16px;
+}
+
+tr.md-row.ng-scope:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+md-content>.ng-scope>.layout-column>form {
+  background-color: transparent;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+md-input-container.no button {
+  padding: 0px 20px;
+}
+
+.padd button {
+  padding: 0px 20px;
+}
+
+md-card-title-text .md-headline {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+md-card-title-text .md-subhead {
+  font-weight: 600;
+}
+
+.btn-icon {
+  padding-right: 10px;
+}
+
+tr td .md-button.md-icon-button {
+  border-radius: 4px;
+  height: 30px;
+  margin: 7px;
+}
+
+tr td .md-button.md-icon-button span {
+  font-size: 20px;
+}
+
+.td-btn-coupon:hover {
+  background-color: #155487 !important;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+.td-btn-edit:hover {
+  background-color: #efad4d !important;
+  color: #ffffff !important;
+  border-radius: 4px;
+}
+
+.td-btn-delete:hover {
+  background-color: #be282a !important;
+  color: #ffffff !important;
+  border-radius: 4px;
+}
+
+tr td a {
+  
+}
+
+
+.dashboard-cards {
+  margin: 0px 10px;
+}
+
+.dashboard-users {
+  border-radius: 8px 8px 0px 0px;
+  margin: 0 -1px;
+}
+
+.card-coupons .dashboard-users {
+  background-color: #efad4d;
+}
+
+.card-coupons .dashboard-users-info {
+  padding: 15px 10px;
+  color: #efad4d;
+}
+
+.card-coupons {
+  border-radius: 8px;
+  border: 1px solid #efad4d;
+}
+
+.card-merchants .dashboard-users {
+  background-color: #5db85b;
+}
+
+.card-merchants .dashboard-users-info {
+  padding: 15px 10px;
+  color: #5db85b;
+}
+
+.card-merchants {
+  border-radius: 8px;
+  border: 1px solid #5db85b;
+}
+
+.card-users {
+  border: 1px solid #347ab8;
+  border-radius: 8px;
+}
+
+.card-users .dashboard-users {
+  background-color: #347ab8;
+  /*padding: 10px 15px;*/
+  /*margin: 0px 10px;*/
+}
+
+.card-users .dashboard-users-info {
+  padding: 15px 10px;
+  color: #347ab8;
+}
+
+.dashboard-users-info" {
+  /*padding: 10px 15px;*/
+  /*margin: 0px 10px;*/
+}
+.dashboard-cards span {
+  color: white;
+}
+.dashboard-cards span {
+  font-size: 60px !important;
+  padding: 20px !important;
+  color: #ffffff !important;
+}
+
+.dashboard-cards a {
+  cursor: pointer;
+}
+
+.dashboard-numbers .number {
+  font-size: 50px;
+  margin: 0px;
+}
+
+.dashboard-numbers {
+  color: #ffffff;
+  margin-right: 20px
+}
+
+.outterpage-logo {
+  background-color: #155487;
+}
+
+/*END CUSTOM*/
+
+md-table-container {
+  max-height: 700px!important;
+}
+
+/*thead {
+  background: #ccc;
+}*/
+
+md-content .lic-sidebar>.md-button.md-raised {
+  color: #155487;
+}
+
+md-content .lic-sidebar .md-button.md-raised:hover {
+  color: #ffffff;
+}
+
+button.md-button {
+  text-transform: capitalize;
+}
+
+md-content .lic-sidebar {
+  background-color: #155487;
+}
+
+md-content {
+    background: #FFF;
+}
+
+
+thead tr > th {
+  color: #000!important;
+}
+md-icon.md-sort-icon {
+  color: #FFF!important;
+}
+.md-errors-spacer {
+  display: none;
+}
+md-dialog {
+  border-radius: 0px;
+}
+.login-container {
+  width: 300px;
+}
+.normal-case {
+  text-transform: none!important;
+}
+.vc-header-icon {font-size: 3em;}
+.vc-toolbar-icon {font-size: 35px;}
+.site-content-toolbar-button{
+  font-size: 20px;
+}
+.sidenav-btn {
+  margin: 0px;
+  border: 0px;
+  border-radius: none;
+  text-align: left;
+  padding-left: 12px;
+}
+.docs-toolbar-tools {
+  padding: 0;
+  margin: 0 24px;
+  width: auto;
+}
+a.md-button {
+  border-radius: 0px;
+  text-transform: capitalize;
+}
+md-list-item .md-button {
+  border-radius: 0px !important;
+}
+.page-content {
+  overflow: auto;
+}
+
+.permission-tr > td {
+  width: 20%;
+  vertical-align: middle;
+}
+
+.users-tr > td {
+  vertical-align: middle!important;
+}
+.tag-1 {
+  background: #16a085;
+  padding: 0px 5px 0px 5px;
+  color: white;
+  border: 1px solid #16a085;
+  border-radius: 4px;
+}
+.tag-2 {
+  background: #28b463;
+  padding: 0px 5px 0px 5px;
+  color: white;
+  border: 1px solid #28b463;
+  border-radius: 4px;
+}
+.tag-3 {
+  background: #2a83bd;
+  padding: 0px 5px 0px 5px;
+  color: white;
+  border: 1px solid #2a83bd;
+  border-radius: 4px;
+}
+.tag-4 {
+  background: #8e44ad;
+  padding: 0px 5px 0px 5px;
+  color: white;
+  border: 1px solid #8e44ad;
+  border-radius: 4px;
+}
+.tag-5 {
+  background: #2c3e50;
+  padding: 0px 5px 0px 5px;
+  color: white;
+  border: 1px solid #2c3e50;
+  border-radius: 4px;
+}
+.padding-bottom-0 {
+  padding-bottom: 0px;
+}
+.padding-bottom {
+  padding-bottom: 5px;
+}
+.no {
+  margin: 0px;
+}
+
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	background-color: transparent;
+	font-size: 0.9rem;
+}
+
+.table {
+	border-collapse: collapse !important;
+}
+
+.table td, .table th {
+	background-color: transparent;
+}
+
+.table-bordered th, .table-bordered td {
+	border: 1px solid #ddd !important;
+}
+
+.table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;
+}
+
+.table th {
+	text-align: left;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+	padding: 8px;
+	line-height: 1.42857143;
+	vertical-align: top;
+}
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+	border-top: 1px solid #ddd;
+}
+
+.table > thead > tr > th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #ddd;
+}
+
+.table > caption + thead > tr:first-child > th,
+.table > colgroup + thead > tr:first-child > th,
+.table > thead:first-child > tr:first-child > th,
+.table > caption + thead > tr:first-child > td,
+.table > colgroup + thead > tr:first-child > td,
+.table > thead:first-child > tr:first-child > td {
+	border-top: 0;
+}
+
+.table > tbody + tbody {
+	border-top: 2px solid #ddd;
+}
+
+.table .table {
+	background-color: #fff;
+}
+
+.table-condensed > thead > tr > th,
+.table-condensed > tbody > tr > th,
+.table-condensed > tfoot > tr > th,
+.table-condensed > thead > tr > td,
+.table-condensed > tbody > tr > td,
+.table-condensed > tfoot > tr > td {
+	padding: 5px;
+}
+
+.table-bordered {
+	border: 1px solid #ddd;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+	border: 1px solid #ddd;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+	border-bottom-width: 2px;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+	background-color: #f9f9f9;
+}
+
+.table-hover > tbody > tr:hover {
+	background-color: #f5f5f5;
+}
+
+input.ng-invalid, md-select.ng-invalid .md-select-value, textarea.ng-invalid, .quickdate.ng-invalid > a.quickdate-button, vc-datepicker.ng-invalid md-datepicker .md-datepicker-input-container, vc-datepicker.ng-invalid:not([disabled]) .time {
+  border-bottom: 1px solid rgb(244,67,54);
+}
+md-select.ng-invalid.ng-dirty .md-select-value {
+  border-bottom-width: 1px!important;
+  color:rgb(200, 200, 200) !important;
+}
+
+tr.md-row {
+  height: 45px!important;
+}
+
+.table > thead > tr > td.active,
+.table > tbody > tr > td.active,
+.table > tfoot > tr > td.active,
+.table > thead > tr > th.active,
+.table > tbody > tr > th.active,
+.table > tfoot > tr > th.active,
+.table > thead > tr.active > td,
+.table > tbody > tr.active > td,
+.table > tfoot > tr.active > td,
+.table > thead > tr.active > th,
+.table > tbody > tr.active > th,
+.table > tfoot > tr.active > th {
+	background-color: #f5f5f5;
+}
+
+tr.tr-vet th, tr.tr-vet td {
+	background-color: #009999;
+	color: white;
+}
+.table-responsive {
+	overflow-x: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.padding-10 {
+  padding: 10px;
+}
+
+.width-50 {
+  width: 50px;
+}
+
+md-sidenav.md-locked-open {
+  width: 220px;
+  min-width: 220px;
+  max-width: 220px;
+}
+
+.list-item-selected {
+  background: rgb(63,81,181)
+}
+
+.margin-bottom-50 {
+    margin-bottom: 50px;
+}
+
+.no-mrg {
+    margin: 0px;
+}
+
+.angular-google-map-container {
+    height: 500px;
+    width: 80vw;
+}
+
+.my-drop-zone {
+    border: dotted 2px lightgray;
+    height: 100px;
+    text-align: center;
+}
+
+.active-step {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+mdp-time-picker button {
+  margin-top: 15px!important;
+}
+
+.edit_merchant_icon {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.merchant-logo-container {
+  position: relative;
+}
+
+.merchant-logo-container a {
+    position: absolute;
+    top: -15px;
+    right: 0;
+    left: 130px;
+    font-size: 26px;
+    color: red;
+}
+
+.margin-top-10 {
+  margin-top: 10px!important;
+}
+
+work-day-invalid input.md-input {
+  border-bottom: 1px solid rgb(244,67,54)!important;
+}
+
+.red {
+  color: red;
+}
+
+.working-hours-all span {
+  margin-top: 30px!important;
+}
+
+.working-hours-margin-fix {
+  margin-top: -6px!important;
+}
+
+.user-table-header th {
+  padding: 0px!important;
+}
+
+.error-message {
+  color: red;
+  font-size: 11px;
+}
+
+.md-media-md.card-media > i {
+    font-size: 90px;
+}
+
+.user-table {
+    overflow-x: hidden;
+}
+
+.fix-margin {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.sort-by-container-fix {
+    margin: 30px;
+}
+
+.register-container {
+    margin-top: 20px!important;
+    margin-bottom: 10px!important;
+}
+
+.password-container a {
+    padding: 10px;
+    text-decoration: none;
+    color: forestgreen;
+}
+
+.category-image {
+    width: 125px;
+    height: 125px;
+    padding: 10px;
+}
+
+.filter-by-container-fix {
+    width: auto;
+    margin-right: 8px;
+    margin-left: 8px;
+}

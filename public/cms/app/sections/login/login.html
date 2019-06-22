@@ -1,0 +1,29 @@
+<md-content flex layout="row" layout-align="center center">
+    <div flex-sm="80" flex-gt-sm="60" layout="column">
+        <md-whiteframe class="md-whiteframe-1dp" >
+						<md-content class="md-padding">
+								<form name="form" layout="column">
+										<div flex layout="row" layout-align="center center" md-primary-color>
+												<img class="outterpage-logo" src="assets/images/logo-new.png" />
+										</div>
+										<md-input-container flex>
+												<label>Email</label>
+												<input type="text"
+															 ng-model="user.email"
+															 required
+															 ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
+										</md-input-container>
+										<md-input-container flex class="password-container">
+												<label>Password</label>
+												<input type="password" ng-model="user.password" required>
+												<a href="#" aria-label="Forgot password" class="pull-right" ui-sref="forgot-password">Forgot password?</a>
+										</md-input-container>
+										<md-button class="md-raised md-primary" type="button" ng-click="login()" pull-right ng-disabled="form.$invalid || loading">
+												<span ng-show="!loading">Login</span>
+												<span ng-show="loading"><i class="fa fa-cog fa-spin"></i> Please wait..</span>
+										</md-button>
+								</form>
+						</md-content>
+        </md-whiteframe>
+    </div>
+</md-content>

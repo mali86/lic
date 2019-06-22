@@ -1,0 +1,182 @@
+<div ng-if="session.role == 'sc-user'" flex layout="column">
+     <span class="padding-bottom table-title">
+        {{shoppingCenter.id ? 'Edit - ' + shoppingCenter.name : 'Add'}}
+    </span>
+    <form name="form">
+        <!-- <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Shopping Center {{shoppingCenter.id ? 'Edit - ' + shoppingCenter.name : 'Add'}}</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="fa" md-font-icon="fa-times" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar> -->
+        <md-content flex layout="column" layout-padding>
+            <div layout="column">
+                <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+                    <md-tab label="Details">
+                        <md-content class="md-padding">
+                            <div layout="column">
+                                <h4>Shopping center logo</h4>
+                                <div ng-if="imagePreparedForUpload" file="imagePreparedForUpload._file" width="140" height="140" ng-thumb></div>
+                                <div class="merchant-logo-container" ng-if="shoppingCenter.logo && !imagePreparedForUpload">
+                                    <a href="#" ng-click="removeLogo()"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+                                    <img width="140" height="140" ng-src="{{shoppingCenter.logo}}">
+                                </div>
+                            </div>
+                            <input type="file" nv-file-select="" uploader="uploader" />
+                            <div layout="row">
+                                <md-input-container flex>
+                                    <label>Name</label>
+                                    <input name="name" ng-model="shoppingCenter.name" minlength="3" required
+                                           type="text">
+                                    <em class="error-message" ng-show="form.name.$error.required">Please enter shopping
+                                        center name</em>
+                                    <em class="error-message" ng-show="form.name.$error.minlength">Name must be at least
+                                        3 characters long</em>
+                                </md-input-container>
+                            </div>
+                            <div layout="row">
+                                <md-input-container flex>
+                                    <label>Description</label>
+                                    <textarea name="description" minlength="3" required
+                                              ng-model="shoppingCenter.description" rows="5"
+                                              md-select-on-focus></textarea>
+                                    <em class="error-message" ng-show="form.description.$error.required">Please enter
+                                        description</em>
+                                    <em class="error-message" ng-show="form.description.$error.minlength">Description
+                                        must be at least 3 characters long</em>
+                                </md-input-container>
+                            </div>
+                            <div layout="row">
+                                <div flex>
+                                    <md-autocomplete md-input-name="area" 
+                                                     md-search-text="searchAreaText"
+                                                     md-selected-item-change="selectArea(area)"
+                                                     required md-items="area in loadArea(searchAreaText)"
+                                                     md-item-text="area.name" md-require-match
+                                                     md-delay="300" md-min-length="0" md-floating-label="Area">
+                                        <md-item-template>
+                                            <span md-highlight-text="searchAreaText">{{area.name}}</span>
+                                        </md-item-template>
+                                        <md-not-found>
+                                            No states matching "{{searchAreaText}}" were found.
+                                        </md-not-found>
+                                        <em class="error-message" ng-show="form.area.$error.required">Please select
+                                            area</em>
+                                    </md-autocomplete>
+                                </div>
+                            </div>
+                            <div layout="row">
+                                <md-input-container flex>
+                                    <label>Zip</label>
+                                    <input name="zip"
+                                           ng-model="shoppingCenter.zip"
+                                           ng-change="geoLocationByZip(shoppingCenter.zip)"
+                                           ng-required="!shoppingCenter.lat || !shoppingCenter.lon"
+                                           type="text">
+                                    <em class="error-message" ng-show="form.zip.$error.required">Please enter ZIP
+                                        code</em>
+                                </md-input-container>
+                                <md-input-container flex>
+                                    <label>Address</label>
+                                    <input name="address" ng-model="shoppingCenter.address" required
+                                           ng-disabled="loadingByZip" type="text">
+                                    <em class="error-message" ng-show="form.address.$error.required">Please enter
+                                        address</em>
+                                </md-input-container>
+                                <md-input-container flex>
+                                    <label>City</label>
+                                    <input name="city" ng-model="shoppingCenter.city" required
+                                           ng-disabled="loadingByZip" type="text">
+                                    <em class="error-message" ng-show="form.city.$error.required">Please enter city
+                                        name</em>
+                                </md-input-container>
+                            </div>
+                            <div layout="row">
+                                <md-input-container flex>
+                                    <label>Latitude</label>
+                                    <input name="lat" ng-model="shoppingCenter.lat" required ng-disabled="loadingByZip"
+                                           type="number" step="any">
+                                    <em class="error-message" ng-show="form.lat.$error.required">Please enter
+                                        latitude</em>
+                                </md-input-container>
+                                <md-input-container flex>
+                                    <label>Longitude</label>
+                                    <input name="lng" ng-model="shoppingCenter.lon" required ng-disabled="loadingByZip"
+                                           type="number" step="any">
+                                    <em class="error-message" ng-show="form.lng.$error.required">Please enter
+                                        Longitude</em>
+                                </md-input-container>
+                            </div>
+                            <div layout="row">
+                                <md-input-container flex>
+                                    <label>Website</label>
+                                    <input ng-model="shoppingCenter.website" placeholder="http://www.example.com"
+                                           type="text" name="website">
+                                    <em class="error-message" ng-show="form.website.$error.required">Please enter
+                                        website (http://www.example.com)</em>
+                                </md-input-container>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Working hours">
+                        <md-content class="md-padding" ng-form="timeForm">
+                            <div layout="row" class="working-hours-all">
+                                <span>Set all from</span>
+                                <mdp-time-picker name="allFrom" ng-model="all.from"></mdp-time-picker>
+                                <span>to</span>
+                                <mdp-time-picker name="allTo" ng-model="all.to"></mdp-time-picker>
+                                <md-input-container>
+                                    <md-button class="md-raised working-hours-margin-fix" ng-click="setTime()">Set
+                                    </md-button>
+                                </md-input-container>
+                            </div>
+                            <md-table-container>
+                                <table md-table>
+                                    <thead md-head>
+                                    <tr md-row>
+                                        <th md-column>Week Day</th>
+                                        <th md-column>From</th>
+                                        <th md-column>To</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                    <tr md-row ng-repeat="day in shoppingCenter.working_hours">
+                                        <td md-cell>
+                                            <span>{{day.day}}</span>
+                                        </td>
+                                        <td md-cell>
+                                            <mdp-time-picker name="dayFrom{{day.day}}"
+                                                             ng-class="{'work-day-invalid': day.to && !day.from}"
+                                                             ng-model="day.from">
+                                                <div ng-if="day.to && !day.from" class="red">This is required</div>
+                                            </mdp-time-picker>
+                                        </td>
+                                        <td md-cell>
+                                            <mdp-time-picker name="dayTo{{day.day}}"
+                                                             ng-class="{'work-day-invalid': day.from && !day.to }"
+                                                             ng-model="day.to">
+                                                <div ng-if="day.from && !day.to" class="red">This is required</div>
+                                            </mdp-time-picker>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </div>
+        </md-content>
+        <section layout="row">
+            <md-button type="submit" ng-click="save()" class="md-raised md-primary"
+                       ng-disabled="form.$invalid || loading">
+                <span ng-show="loading">Please wait...</span>
+                <span ng-show="!loading && shoppingCenter.id">Update</span>
+                <!-- <span ng-show="!loading && !shoppingCenter.id">Add</span> -->
+            </md-button>
+        </section>
+    </form>
+</div>

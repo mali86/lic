@@ -1,0 +1,142 @@
+<!-- <md-dialog aria-label="Modal" flex> -->
+<div flex layout="column" >
+    <span ng-bind="merchant.id ? 'Edit Merchant' : 'Add Merchant'" class="padding-bottom table-title">
+    </span>
+    <form name="form">
+        <!-- <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 ng-bind="merchant.id ? 'Edit Merchant' : 'Add Merchant'"></h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="fa" md-font-icon="fa-times" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar> -->
+        <md-content flex layout="column" layout-padding>
+            <div layout="column">
+                <div layout="column">
+                    <h4>Merchant Logo</h4>
+                    <div ng-if="imagePreparedForUpload" file="imagePreparedForUpload._file" width="140" height="140" ng-thumb></div>
+                    <div class="merchant-logo-container" ng-if="merchant.logo && !imagePreparedForUpload">
+                        <a href="#" ng-click="removeLogo()"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+                        <img width="140" height="140" ng-src="{{merchant.logo}}">
+                    </div>
+                </div>
+                <input type="file" nv-file-select="" uploader="uploader" />
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Name</label>
+                        <input name="name" ng-model="merchant.name" required type="text">
+                        <em class="error-message" ng-show="form.name.$error.required">Enter merchant name</em>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Description</label>
+                        <textarea name="description" minlength="3" required ng-model="merchant.description" rows="2" md-select-on-focus></textarea>
+                        <em class="error-message" ng-show="form.description.$error.required">Please enter description</em>
+                        <em class="error-message" ng-show="form.description.$error.minlength">Description must be at least 3 characters long</em>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <div flex>
+                        <md-autocomplete md-input-name="area" md-selected-item="selectedArea" md-search-text="searchAreaText" md-selected-item-change="selectArea(area)" required md-items="area in loadArea(searchAreaText)" md-item-text="area.name" md-require-match md-delay="300" md-min-length="0" md-floating-label="Area">
+                            <md-item-template>
+                                <span md-highlight-text="searchAreaText">{{area.name}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No states matching "{{searchAreaText}}" were found.
+                            </md-not-found>
+                            <em class="error-message" ng-show="form.area.$error.required">Please select area</em>
+                        </md-autocomplete>
+                    </div>
+                    <div flex>
+                        <md-autocomplete md-selected-item="selectedShoppingCenter" md-no-cache="true" md-search-text="searchTextShoppingCenter" md-selected-item-change="selectShoppingCenter(shoppingCenter)" md-items="shoppingCenter in loadShoppingCenters(searchTextShoppingCenter)" md-item-text="shoppingCenter.name" md-require-match md-delay="300" md-min-length="0" md-floating-label="Shopping Center">
+                            <md-item-template>
+                                <span md-highlight-text="searchTextShoppingCenter">{{shoppingCenter.name}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No states matching "{{searchTextShoppingCenter}}" were found.
+                            </md-not-found>
+                        </md-autocomplete>
+                    </div>
+                </div>
+                <div layout="row">
+                    <md-input-container flex ng-if="!merchant.shopping_center_id">
+                        <label>Shopping Center Name</label>
+                        <input name="shopping_center_name" ng-model="merchant.shopping_center_name" ng-required="!merchant.shopping_center_id || !shoppingCenter.lat || !shoppingCenter.lon" type="text">
+                        <em class="error-message" ng-show="form.shopping_center_name.$error.required">Required if shopping center is not selected</em>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Zip</label>
+                        <input ng-model="merchant.zip" name="zip" ng-change="geoLocationByZip(merchant.zip)" ng-required="!merchant.shopping_center_id" type="text">
+                        <em class="error-message" ng-show="form.zip.$error.required">Please enter ZIP code</em>
+                    </md-input-container>
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>Address</label>
+                            <input name="address" ng-model="merchant.address" ng-required="!merchant.shopping_center_id" ng-disabled="loadingByZip" type="text">
+                            <em class="error-message" ng-show="form.address.$error.required">Please enter address</em>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Suite number</label>
+                            <input name="suite_number" ng-model="merchant.suite_number" ng-required="!merchant.address" ng-disabled="loadingByZip" type="text">
+                            <em class="error-message" ng-show="form.suite_number.$error.required">Please enter suite number</em>
+                        </md-input-container>
+                    </div>
+                    <md-input-container flex>
+                        <label>City</label>
+                        <input ng-model="merchant.city" name="city" ng-required="!merchant.shopping_center_id" ng-disabled="loadingByZip" required type="text">
+                        <em class="error-message" ng-show="form.city.$error.required">Please enter city name</em>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Latitude</label>
+                        <input name="lat" ng-model="merchant.lat" required ng-disabled="loadingByZip" type="number" step="any">
+                        <em class="error-message" ng-show="form.lat.$error.required">Please enter latitude</em>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Longitude</label>
+                        <input name="lon" ng-model="merchant.lon" required ng-disabled="loadingByZip" type="number" step="any">
+                        <em class="error-message" ng-show="form.lon.$error.required">Please enter Longitude</em>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Phone</label>
+                        <input ng-model="merchant.phone" type="text">
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Website</label>
+                        <input ng-model="merchant.website" type="text">
+                        <em>* http://www.example.com</em>
+                    </md-input-container>
+                </div>
+                <div layout="column">
+                    <md-input-container flex md-no-float>
+                        <label></label>
+                        <tags-input ng-model="merchant.categories" replaces-spaces-with-dashes="false" aria-label="Category" placeholder="Add Category" debounce-delay="100" key-property="id" display-property="name" add-from-autocomplete-only="true" max-results-to-show="10">
+                            <auto-complete source="loadCategories($query)" aria-label="Category" load-on-focus="true" load-on-empty="true" min-length="0" debounce-delay="100"></auto-complete>
+                        </tags-input>
+                        <em ng-if="categoryLoading">Please wait...</em>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-content>
+        <section layout="row">
+            <!-- <md-button type="button" class="md-raised" ng-click="cancel()">Back</md-button> -->
+            <md-button type="submit" ng-click="save()" class="md-raised md-primary" ng-disabled="form.$invalid || loading">
+                <span ng-show="!loading && !merchant.id"><span class="icon-lic-save btn-icon"></span> Save</span>
+                <span ng-show="!loading && merchant.id"><span class="icon-lic-update btn-icon"></span> Update</span>
+                <span ng-show="loading">Please wait...</span>
+            </md-button>
+            <md-button type="button" ng-click="nextStep()" class="md-raised md-primary" ng-disabled="form.$invalid || loading">
+                <span ng-show="!loading">Next <span class="icon-lic-right-arrow btn-icon"></span></span>
+            </md-button>
+        </section>
+    </form>
+</div>
+<!-- </md-dialog> -->

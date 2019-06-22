@@ -1,0 +1,188 @@
+<div ng-show="!loading">
+		<!-- <p>Welcome back {{session.first_name}} {{session.last_name}}!</p>
+		<p ng-if="session.role == 'user'">
+				Currently there are {{totals.activeCoupons}} active {{totals.activeCoupons == 1 ? 'coupon' : 'coupons'}} for your stores.
+		</p>
+		<p ng-if="session.role == 'sc-user'">
+				You have {{totals.newMerchants}} new merchants registered in your shopping center this week. Currently there are {{totals.activeCoupons}} active coupons in your shopping center.
+		</p>
+		<p ng-if="session.role == 'admin'">
+				You have {{totals.newMerchants}} new merchant accounts and {{totals.newShoppingCenters}} new shopping centers registered this week. <br></br> <br>
+				Currently there are {{totals.activeCoupons}} active coupons in system.
+		</p> -->
+		<div ng-if="session.role == 'admin' || session.role == 'sc-user'" layout="row" layout-align="center center">
+		  <div flex class="dashboard-cards card-users" >
+		    <div layout="row" class="dashboard-users ">
+		    	<div flex="66" layout="column" layout-align="start start">
+		    		<span class="icon-lic-users"></span>
+		    	</div>
+		    	<div class="dashboard-numbers" flex="33" layout="column" layout-align="end end">
+		    		<p class="number">{{stats.users}}</p>
+			    	<p>Users</p>
+		    	</div>
+		    </div>
+		    <div layout="row" class="dashboard-users-info">
+		    	<a ng-click="redirectToUsers()">View details</a>
+		    </div>
+		  </div>
+		  <div flex class="dashboard-cards card-merchants">
+		     <div layout="row" class="dashboard-users">
+		    	<div flex="66" layout="column" layout-align="start start">
+		    		<span class="icon-lic-merchants"></span>
+		    	</div>
+		    	<div class="dashboard-numbers" flex="33" layout="column" layout-align="end end">
+		    		<p class="number">{{stats.merchants}}</p>
+			    	<p>Merchants</p>
+		    	</div>
+		    </div>
+		    <div layout="row" class="dashboard-users-info">
+		    	<a ng-click="redirectToMerchants()">View details</a>
+		    </div>
+		  </div>
+		  <div flex class="dashboard-cards card-coupons">
+		     <div  layout="row" class="dashboard-users">
+		    	<div flex="66" layout="column" layout-align="start start">
+		    		<span class="icon-lic-coupon"></span>
+		    	</div>
+		    	<div class="dashboard-numbers" flex="33" layout="column" layout-align="end end">
+		    		<p class="number">{{stats.coupons}}</p>
+			    	<p>Coupons</p>
+		    	</div>
+		    </div>
+		    <div layout="row" class="dashboard-users-info">
+		    	View details
+		    </div>
+		  </div>
+		</div>
+
+		<div ng-if="session.role == 'user'" layout="row" layout-align="start start">
+			<div flex="33" layout="columm" layout-align="start start" >
+		     <md-list flex>
+
+			  <md-subheader class="md-no-sticky">Profile information</md-subheader>
+			  <md-list-item>
+			  	<img ng-src="{{merchant.logo}}" alt="">
+			  </md-list-item>
+			  <md-list-item>
+			    <p>Name: {{ merchant.name }} </p>
+			  </md-list-item>
+
+			  <md-divider></md-divider>
+
+			   <md-list-item>
+			    <p>Description: {{ merchant.description }} </p>
+			  </md-list-item>
+
+			  <md-divider></md-divider>
+
+			   <md-list-item>
+			    <p>Shopping Center: {{ merchant.shopping_center_name }} </p>
+			  </md-list-item>
+
+			  <md-divider></md-divider>
+
+			   <md-list-item>
+			    <p>Zip: {{ merchant.zip }} </p>
+			  </md-list-item>
+
+			  <md-divider></md-divider>
+
+			   <md-list-item>
+			    <p>Address: {{ merchant.address }} </p>
+			  </md-list-item>
+
+			  <md-divider></md-divider>
+
+			   <md-list-item>
+			    <p>Suite no: {{ merchant.suite_number }} </p>
+			  </md-list-item>
+
+			  <md-divider></md-divider>
+
+			   <md-list-item>
+			    <p>City: {{ merchant.city }} </p>
+			  </md-list-item>
+
+			  <md-divider></md-divider>
+
+			   <md-list-item>
+			    <p>Latitude: {{ merchant.lat }} </p>
+			  </md-list-item>
+
+			  <md-divider></md-divider>
+
+			   <md-list-item>
+			    <p>Longitude: {{ merchant.lon }} </p>
+			  </md-list-item>
+
+			   <md-divider></md-divider>
+
+			   <md-list-item>
+			    <p>Phone: {{ merchant.phone }} </p>
+			  </md-list-item>
+
+			  <md-divider></md-divider>
+
+			   <md-list-item>
+			    <p>Website: {{ merchant.website }} </p>
+			  </md-list-item>
+
+			   <md-divider></md-divider>
+
+			   <md-list-item>
+			    <p>Category: {{ merchant.categories[0].name }} </p>
+			  </md-list-item>
+
+			</md-list>
+		  </div>
+		  <div flex="33" class="dashboard-cards card-coupons">
+		     <div  layout="row" class="dashboard-users">
+		    	<div flex="66" layout="column" layout-align="start start">
+		    		<span class="icon-lic-coupon"></span>
+		    	</div>
+		    	<div class="dashboard-numbers" flex="33" layout="column" layout-align="end end">
+		    		<p class="number">{{stats.coupons}}</p>
+			    	<p>Coupons</p>
+		    	</div>
+		    </div>
+		    <div layout="row" class="dashboard-users-info">
+		    	View details
+		    </div>
+		  </div>
+		</div>
+
+		<div flex="100" layout="row">
+			<zingchart id="myChart" zc-json="myJson" zc-height=500 zc-width=900></zingchart>
+		</div>
+		
+
+		<!-- Chart morris -->
+
+		<div flex layout="row">
+            <!-- <div class="chart-container-wrapper" layout="column" flex="66">  
+            	<div class="chart-container">
+            		<md-toolbar class="md-primary">
+				    <div class="md-toolbar-tools">
+				    <p>Toolbar with grouped panels (Maximum open: 2)</p>
+				    <span flex></span>
+				    <md-select ng-model="weapon" placeholder="Weapon" class="md-no-underline">
+				        <md-option value="axe">Axe</md-option>
+				        <md-option value="sword">Sword</md-option>
+						<md-option value="wand">Wand</md-option>
+				        <md-option value="pen">Pen?</md-option>
+			        </md-select>
+				    </div>
+				</md-toolbar>
+
+			  	<md-content flex layout-padding>
+			 		<div id="morris-area-chart"></div>
+			  	</md-content>
+            	</div>
+		  	</div> -->
+		  	<span flex="33"></span>
+		</div>
+              
+</div>
+            <!-- /.row -->
+<div ng-show="loading">Please wait...</div>
+

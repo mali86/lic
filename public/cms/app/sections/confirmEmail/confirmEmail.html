@@ -1,0 +1,15 @@
+<md-content flex layout="row" layout-align="center center">
+    <div flex-sm="80" flex-gt-sm="60" layout="column" layout-padding>
+        <md-whiteframe class="md-whiteframe-1dp text-center">
+            <div flex layout="row" layout-align="center center" md-primary-color>
+                <img class="outterpage-logo" src="assets/images/logo-new.png" />
+            </div>
+            <div ng-if="!loading && success">
+                <h3>You have successfully confirmed your email address!</h3>
+                <h3>Thank you!</h3>
+                <md-button class="md-raised md-primary" type="button" ui-sref="login">Login</md-button>
+            </div>
+            <h3 ng-if="loading">Please wait...</h3>
+        </md-whiteframe>
+    </div>
+</md-content>

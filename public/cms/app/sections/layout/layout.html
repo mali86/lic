@@ -1,0 +1,107 @@
+<div layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z1" md-component-id="left" md-is-locked-open="isPixieOpen() && $mdMedia('gt-md')" ng-cloak>
+        <div layout="column" layout-fill flex>
+            <md-toolbar class="md-hue-3 md-whiteframe-z1" layout="row" layout-align="center center">
+                <!-- <h1 class="md-toolbar-tools">LIC Admin</h1> -->
+                <img src="assets/images/logo-new.png" alt="">
+                <md-button href class="md-icon-button" ng-click="close()" hide-gt-md aria-label="Close">
+                    <i class="fa fa-angle-double-left md-title"></i>
+                </md-button>
+            </md-toolbar>
+            <md-content class="lic-sidebar" flex layout="column" layout-wrap>
+                <md-button type="button"
+                           class="md-primary sidenav-btn"
+                           ui-sref="layout.home" ui-sref-active="md-raised"><span class="icon-lic-dashboard"></span>Home</md-button>
+                <md-button type="button"
+                           ng-if="session.role == 'admin' || session.role == 'sc-user'"
+                           class="md-primary sidenav-btn"
+                           ui-sref="layout.merchant" ui-sref-active="md-raised" ng-class="{'md-raised': ((state.name == 'layout.coupons' || state.name == 'layout.merchants-edit.edit') || state.name == 'layout.merchants-edit.kml')}"><span class="icon-lic-merchants"></span>Merchants</md-button>
+                <md-button type="button"
+                           ng-if="session.role == 'user'"
+                           class="md-primary sidenav-btn"
+                           ui-sref="layout.merchant" ui-sref-active="md-raised" ng-class="{'md-raised': (state.name == 'layout.merchants-edit.edit' || state.name == 'layout.merchants-edit.kml')}"><span class="icon-lic-merchants"></span>Merchants</md-button>
+                <!--<md-button type="button"-->
+                           <!--ng-if="session.role == 'admin'"-->
+                           <!--class="md-primary sidenav-btn"-->
+                           <!--ui-sref="layout.merchant-request" ui-sref-active="md-raised">Merchants Requests</md-button>-->
+                <md-button type="button"
+                           class="md-primary sidenav-btn"
+                           ng-if="session.role == 'admin' || session.role == 'sc-user'"
+                           ui-sref="layout.areas" ui-sref-active="md-raised" ng-class="{'md-raised': state.name == 'layout.areas-edit'}"><span class="icon-lic-areas"></span>Areas</md-button>
+                <md-button type="button"
+                           class="md-primary sidenav-btn"
+                           ng-if="session.role == 'admin' || session.role == 'sc-user'"
+                           ui-sref="layout.categories" ui-sref-active="md-raised" ng-class="{'md-raised': state.name == 'layout.categories-edit'}"><span class="icon-lic-categories"></span>Categories</md-button>
+               <!--  <md-button type="button"
+                           class="md-primary sidenav-btn"
+                           ng-if="session.role == 'admin' || session.role == 'sc-user'"
+                           ui-sref="layout.shopping-centers" ui-sref-active="md-raised">Shopping Centers</md-button> -->
+                <md-button type="button"
+                           ng-if="session.role == 'admin' || session.role == 'sc-user'"
+                           class="md-primary sidenav-btn"
+                           ui-sref="layout.users" ui-sref-active="md-raised" ng-class="{'md-raised': (state.name == 'layout.user-edit' || state.name == 'layout.password-change')}"><span class="icon-lic-users"></span>Users</md-button>
+                <md-button type="button"
+                           ng-if="session.role == 'user'"
+                           class="md-primary sidenav-btn"
+                           ng-click="openMerchantCoupons()"
+                           ui-sref="layout.coupons" 
+                           ui-sref-active="md-raised"><span class="icon-lic-coupon"></span>Coupons</md-button>
+                <md-button type="button"
+                           class="md-primary sidenav-btn"
+                           ui-sref="layout.push-notification" ui-sref-active="md-raised"><span class="icon-lic-notifications"></span>Push notification</md-button>
+                <md-button type="button"
+                           ng-if="session.role != 'sc-user'"
+                           class="md-primary sidenav-btn"
+                           ng-click="openSettings()"
+                           ui-sref="layout.settings" ui-sref-active="md-raised"><span class="icon-lic-settings"></span>Settings</md-button>
+                <md-button type="button"
+                           ng-if="session.role == 'sc-user'"
+                           class="md-primary sidenav-btn"
+                           ng-click="openShoppingCenter($event)" ui-sref="layout.shopping-settings" ui-sref-active="md-raised"><span class="icon-lic-settings"></span>Settings</md-button>
+            </md-content>
+            <!-- ui-sref="layout.shopping-settings" ui-sref-active="md-raised" -->
+        </div>
+    </md-sidenav>
+    <div layout="column" flex>
+        <md-toolbar id="blue-lic-toolbar" class="md-hue-2 site-content-toolbar md-whiteframe-z1" layout="row" layout-align="start center" ng-cloak>
+            <div class="md-toolbar-tools docs-toolbar-tools" flex>
+                <md-button href class="md-icon-button" ng-click="toggle()" hide-gt-md aria-label="Close">
+                    <i class="fa fa-bars"></i>
+                </md-button>
+                <div layout="row" flex>
+                    <div flex layout="column" layout-align="center start">
+                        <a class="back-button" ng-if="isBackActive" ng-click="onBack()">
+                          <span class="icon-lic-back"></span>
+                          Back
+                        </a>
+                    </div>
+                    <div flex="22" layout="column" layout-align="center end">
+                        <md-menu class="site-content-toolbar-button normal-case fill-height" md-position-mode="target-right target">
+                            <md-button aria-label="Open phone interactions menu" ng-click="openMenu($mdOpenMenu, $event)">
+                                {{user.first_name}} {{user.last_name}} <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </md-button>
+                            <md-menu-content width="1">
+                                <md-menu-item>
+                                    <md-button ng-click="openSettings()">
+                                        <i class="fa fa-user" aria-hidden="true"></i> Profile
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="openChangePassword()">
+                                        <i class="fa fa-key" aria-hidden="true"></i> Change password
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="logout()">
+                                        <i class="fa fa-power-off" aria-hidden="true"></i> Logout
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </div>
+                </div>
+            </div>
+        </md-toolbar>
+        <md-content layout-padding class="md-sidenav-left md-whiteframe-z1" ui-view layout="column" flex overflow-x="hidden"></md-content>
+    </div>
+</div>

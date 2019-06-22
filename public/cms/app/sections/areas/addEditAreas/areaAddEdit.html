@@ -1,0 +1,47 @@
+<!-- md-dialog aria-label="Modal" flex> -->
+<div flex layout="column" >
+    <span class="table-title">Area {{area.id ? 'Edit - ' + area.name : 'Add'}}</span>
+    <form name="form">
+        <!-- <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Area {{area.id ? 'Edit - ' + area.name : 'Add'}}</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="fa" md-font-icon="fa-times" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar> -->
+        <md-content>
+            <div flex layout="column" layout-padding>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Name</label>
+                        <input ng-model="area.name" name="name" required type="text">
+                        <em class="error-message" ng-show="form.name.$error.required">Please enter area name</em>
+                    </md-input-container>
+                </div>
+                <div flex>
+                    <md-autocomplete md-input-name="state" md-selected-item="selectedState" md-search-text="searchStateText" md-selected-item-change="selectState(state)"
+                        md-items="state in loadStates(searchStateText)" md-item-text="state.name" md-require-match required md-delay="300"
+                        md-min-length="0" md-floating-label="State">
+                        <md-item-template>
+                            <span md-highlight-text="searchStateText">{{state.name}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            No matching "{{searchStateText}}" states were found.
+                        </md-not-found>
+                        <em class="error-message" ng-show="form.state.$error.required">Please select state</em>
+                    </md-autocomplete>
+                </div>
+            </div>
+        </md-content>
+        <section layout="row">
+            <!-- <md-button type="button" class="md-raised" ng-click="cancel()">Back</md-button> -->
+            <md-button type="submit" ng-click="save()" class="md-raised md-primary" ng-disabled="form.$invalid || loading">
+                <span ng-show="loading">Please wait...</span>
+                <span ng-show="!loading && area.id"><span class="icon-lic-update btn-icon"></span> Update</span>
+                <span ng-show="!loading && !area.id"><span class="icon-lic-save btn-icon"></span> Add</span>
+            </md-button>
+        </section>
+    </form>
+<!-- </md-dialog> -->

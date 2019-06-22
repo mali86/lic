@@ -1,0 +1,31 @@
+<div>
+    <div layout="column">
+        <span class="padding-bottom-0"><i class="fa fa-database" aria-hidden="true"></i> Requests for Merchants to approve</span>
+        <h4 ng-show="loading" class="text-center">Please wait...</h4>
+        <md-table-container ng-if="total > 0">
+            <table md-table md-progress="promise">
+                <thead md-head>
+                    <tr md-row>
+                        <th md-column>Name</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="merchant in merchants track by $index">
+                        <td md-cell ng-bind="merchant.name"></td>
+                        <td md-cell text-right>
+                            <md-button class="md-raised" ng-click="previewMerchantModal($event, merchant)">Preview</md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+        <h4 ng-show="!loading && !total && !params.search" class="text-center">Currently there are no merchants waiting for approval.</h4>
+        <md-table-pagination ng-if="total > 0"
+                             md-options="[10, 20, 30]"
+                             md-limit="params.limit"
+                             md-page="params.page"
+                             md-total="{{total}}"
+                             md-on-paginate="onPaginate"
+                             md-page-select></md-table-pagination>
+    </div>
+</div>

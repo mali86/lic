@@ -1,0 +1,59 @@
+
+<div layout="column">
+    <span class="padding-bottom table-title">
+    <!-- <i class="fa fa-bell" aria-hidden="true"></i> -->
+    Push notifications</span>
+    <form name="form" novalidate flex layout="column" ng-submit="send()">
+        <div layout="column">
+            <div layout="row" ng-if="session.role == 'admin' || session.role == 'sc-user'">
+                        <md-input-container>
+                            <label>User type</label>
+                            <md-select ng-model="user.type" ng-change="roleChanged()">
+                                <md-option ng-if="userRole.id" ng-repeat="userRole in userRoles" ng-value="userRole.id">
+                                    {{userRole.name}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    <div flex ng-if="user.type == 1 && !user.id">
+                        <md-autocomplete required md-input-name="merchant" md-selected-item="selectedMerchant" md-search-text="data.searchMerchantText" md-selected-item-change="selectMerchant(merchant)"
+                                         md-items="merchant in loadMerchants(data.searchMerchantText)" md-item-text="merchant.name" md-require-match md-delay="300"
+                                         md-min-length="0" md-floating-label="Merchant">
+                            <md-item-template>
+                                <span md-highlight-text="data.searchMerchantText">{{merchant.name}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No matching "{{data.searchMerchantText}}" merchants were found.
+                            </md-not-found>
+                        </md-autocomplete>
+                    </div>
+                    <div flex ng-if="user.type == 2 && !user.id">
+                        <md-autocomplete required md-input-name="shippingCenter" md-selected-item="selectedShoppingCenter" md-search-text="data.searchShoppingCenterText" md-selected-item-change="selectShoppingCenter(shoppingCenter)"
+                                         md-items="shoppingCenter in loadShoppingCenters(data.searchShoppingCenterText)" md-item-text="shoppingCenter.name" md-require-match md-delay="300"
+                                         md-min-length="0" md-floating-label="Shopping Center">
+                            <md-item-template>
+                                <span md-highlight-text="data.searchShoppingCenterText">{{shoppingCenter.name}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No matching "{{data.searchShoppingCenterText}}" shopping centers were found.
+                            </md-not-found>
+                        </md-autocomplete>
+                    </div>
+            </div>
+            <md-input-container flex>
+                <label>Title</label>
+                <input ng-model="notification.title" required type="text">
+            </md-input-container>
+            <md-input-container flex>
+                <label>Description</label>
+                <textarea maxlength="200" ng-model="notification.description" required rows="2" md-select-on-focus></textarea>
+                <em pull-right>{{notification.description.length ? notification.description.length : 0}}/200</em>
+            </md-input-container>
+            <section layout="row">
+                <md-button type="submit" class="md-raised md-primary" ng-disabled="form.$invalid || loading">
+                    <span ng-show="!loading"><span class="icon-lic-send-notification btn-icon"></span>Send</span>
+                    <span ng-show="loading"><i class="fa fa-cog fa-spin"></i> Please wait...</span>
+                </md-button>
+            </section>
+        </div>
+    </form>
+</div>
