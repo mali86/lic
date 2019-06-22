@@ -15,4 +15,4 @@ Homestead.yaml
 /application
 /dev
 /wp
-/.pem
+*.pem
