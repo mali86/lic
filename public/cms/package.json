@@ -7,7 +7,7 @@
   },
   "start": "http-server -a localhost -p 4001",
   "dependencies": {
-    "angular": "1.6.1",
+    "angular": "1.8.0",
     "angular-animate": "1.6.0",
     "angular-aria": "1.6.0",
     "angular-file-upload": "2.4.1",
